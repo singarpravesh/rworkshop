@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-# [Linear Regression](1.LinearRegression.html)
+
 # [Linear Regression](regression.html)
 
 
