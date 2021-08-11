@@ -139,6 +139,7 @@ library(rlang)
 
 ## {.smaller .vcenter}
 
+
 ```{r}
 plot(caschool$testscr ~ caschool$str,
      xlab = "Student-teacher ratio",
