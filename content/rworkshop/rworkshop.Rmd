@@ -1,0 +1,12 @@
+---
+title: "rworkshop"
+author: "pravesh"
+date: "11/08/2021"
+output: html_document
+---
+
+
+# [Linear Regression](1.LinearRegression.html)
+
+
+

@@ -1,0 +1,323 @@
+---
+title: "RWorkshop"
+subtitle: "Linear regression"
+author: "PT"
+date: "Aug 2021"
+output: ioslides_presentation
+---
+
+```{css, echo=FALSE}
+pre {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 100px;
+}
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+```
+
+
+# Linear Regression
+
+
+---
+
+Estimate the regression coefficents in
+$$
+\hat{testscr} = \hat{\beta_0} + \hat{\beta_1}str
+$$
+Where, $testscr = (math + read)/2$ is the average test score in the district, and $str = students/teachers$ is the student-teacher ratio.
+
+- The data set `CASchools` is in the `AER` package.
+1. Install the `AER` package.
+1. Load the `CASchools` dataset.
+1. Create new variables $testscr$ and $str$.
+1. Estimate $\hat\beta_0$ and $\hat\beta_1$.
+
+
+---
+
+```{r, warning=FALSE, message=FALSE}
+library(AER)
+data(CASchools, package = "AER")
+caschool <- CASchools
+caschool$str <- caschool$students/caschool$teachers
+caschool$testscr <- (caschool$math + caschool$read)/2
+```
+
+```{r}
+names(CASchools)
+```
+```{r}
+names(caschool)
+```
+
+---
+
+
+```{r,  fig.cap="Scatterplot of TestScore vs Student-Teacher ratio (California School District Data"}
+plot(caschool$testscr ~ caschool$str,
+     xlab = "Student-teacher ratio",
+     ylab = "Test score", pch = 20, xlim = c(10,30),
+     ylim = c(600, 720), las = 1)
+```
+
+
+---
+
+```{r}
+par(mfrow = c(1,2))
+hist(caschool$testscr, main = "Test Scores",
+     xlab = "testcr", ylab = "Frequency")
+hist(caschool$str, main = "Student Teacher Ratio",
+     xlab = "str")
+
+
+```
+
+---
+
+```{r, message=FALSE, warning=FALSE}
+summarytools::dfSummary(caschool[, c('testscr', 'str')], graph.col = FALSE)
+# summary() can also be used.
+```
+
+
+---
+
+
+
+- The `lm()` function is used to fit a <u>**L**</u>inear <u>**M**</u>odel.
+- Usage
+```{r, eval = FALSE}
+lm(formula, data, subset)
+```
+- The California Schools model
+```{r}
+# fit a linear model and save it to an `lm` object
+lm_model1 <- lm(formula = testscr ~ str, data = caschool)
+class(lm_model1)
+```
+
+---
+
+You can directly print the `lm_model1` output
+```{r}
+lm_model1
+```
+
+
+---
+
+Or, you can also print the `summary()`.
+```{r}
+summary(lm_model1)
+```
+
+---
+
+- Add a regression line.
+- First, we shall extract the coefficients from `lm_model1`
+```{r}
+b1 <- coef(lm_model1)[[1]]
+b2 <- abs(coef(lm_model1)[[2]])
+
+```
+
+- We shall also need `expr()` from `rlang` package to add Mathematical Annotation in R.
+
+```{r, message=FALSE, warning=FALSE}
+library(rlang) 
+```
+- Use `?plotmath()` and `demo(plotmath)` for usage.
+
+
+## {.smaller .vcenter}
+
+```{r}
+plot(caschool$testscr ~ caschool$str,
+     xlab = "Student-teacher ratio",
+     ylab = "Test score", pch = 20, xlim = c(10,30),
+     ylim = c(600, 720), las = 1)
+
+# add the model fit
+abline(lm_model1, col = "blue", lwd = 2)
+text(25, 710, expr(paste(widehat(TestScore)~"="~ !!b1~"-"~ !!b2~X~STR)), cex = 0.8)
+arrows(25,702, 28,640, length = 0)
+```
+
+
+
+# The omitted variable(s)
+
+## {.smaller}
+- What was our previous assessment about `testscr`?
+    - We estimated the linear model $\hat{testscr} = 698.9-2.27\times str$
+   - Interpretation: Class with higher `str` i.e. larger class size tend to have lower `testscr`.
+
+- Reasons for considering `english` as omitted variable;
+    - Large immigration population in California
+    - Students in the district who are still learning English.
+    - Students who are still learning English might perform worse on standardized tests as compared to native English speakers. 
+    - The larger class sizes `str` might also have students still learning English. Therefore, considering the OLS estimate $\hat{testscr} = 698.9-2.27\times str$, the policy would be considering lowering the `str` value to improve `testscr`. But this might not solve the problem because of the English learning students in the class.
+
+
+## {.smaller}
+
+- Our multiple regression model is
+$$
+\hat{testscr} = \beta_0 + \beta_1str + \beta_2english
+$$
+where $english$ is the percentage of students in the district who are English learners.
+```{r}
+# summary stats for the three variables
+summary(caschool[c("testscr", "str", "english")])
+```
+
+---
+
+```{r}
+summarytools::descr(caschool[c("testscr", "str", "english")])
+```
+
+---
+
+```{r}
+summarytools::dfSummary(caschool, graph.col = FALSE)
+```
+
+
+## {.smaller}
+
+**Estimated model**
+
+```{r}
+lm_multi <- lm(testscr ~ str + english, data = caschool)
+summary(lm_multi)
+```
+
+# Regression when $X$ is a binary variable
+
+## {.smaller}
+
+- **Equation with a binary regressor**: 
+$$Y_i = \beta_0 + \beta_1 D_i + u_i$$
+$$D_i = \begin{cases}
+        1 \ \ \text{if $STR$ in $i^{th}$ school district < 20} \\
+        0 \ \ \text{if $STR$ in $i^{th}$ school district $\geq$ 20} \\
+      \end{cases}$$
+- Our regression model is
+$$
+testscr_i = \beta_0 + \beta_1 D_i + u_i.
+$$
+
+**What is the difference in the expected test scores in districts with lower student-teacher ratio $STR < 20 (D_i = 1)$ and those with higher student-teacher ratio $STR \geq 20 (D_i=0)$?**
+
+## {.smaller}
+
+- Create the dummy variable and append it to the dataset.
+```{r}
+# create D and append
+caschool$D <- as.factor(ifelse(caschool$str < 20, 1, 0))
+
+# check the dataset
+str(caschool)
+```
+
+## {.smaller}
+- Plot the data
+```{r}
+plot(testscr ~ D, data = caschool, main = "Dummy Regression")
+legend("topleft", legend = c(": STR < 20", expression(paste(": ",STR >= 20))),
+       pch = c("1", "0"), cex = 0.7)
+```
+
+
+## {.smaller}
+
+**Estimate the dummy regression model**
+```{r}
+lm_dummy <- lm(testscr ~ D, data = caschool)
+summary(lm_dummy)
+```
+
+## {.smaller}
+
+**The interpretation of the coefficients in this regression model is as follows:**
+
+$\beta_0$ = `r round(coef(lm_dummy)[[1]], 2)` is the expected test score in districts where $STR \geq 20$.
+
+$\beta_1$ = `r round(coef(lm_dummy)[[2]], 2)` is the difference in the expected test score between districts with $STR < 20$ and those with $STR \geq 20$.
+    
+**Observation:**
+
+One can see that the expected test score in districts with STR<20 ($D_i=1$) is predicted to be 650.1+7.17=657.27 while districts with STR≥20 ($D_i=0$) are expected to have an average test score of only 650.1.
+
+# Multiple models in `stargazer` with heteroskedasticity-robust standard errors.
+
+---
+
+We shall consider the following models and graphically inspect the correlation and summarise all the regression results in a table.
+$$
+\begin{align*}
+\text{(I)  }\text{testscr} &= \beta_0 + \beta_1\text{str} + u\\
+\text{(II)  }\text{testscr} &= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + u\\
+\text{(III)  }\text{testscr} &= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + \beta_3\text{lunch} + u\\
+\text{(IV)  }\text{testscr} &= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + \beta_3\text{calworks} + u\\
+\text{(V)  }\text{testscr} &= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + \beta_3\text{lunch} + \beta_4\text{calworks} + u\\
+\end{align*}
+$$
+
+where, `testscr`- test score
+`str` - student-teacher ratio
+`english` - percentage of english learners
+`lunch` - percentage of students that qualify for a free or subsidised lunch due to family incomes below a certain threshold.
+`calworks` - percentage of students qualifying for the *calworks* income assistance programme.
+
+---
+
+```{r}
+par(mfrow = c(2,2))
+plot(testscr ~ str, data = caschool, main = "Test Scores and\nStudent teacher ratio")
+
+plot(testscr ~ english, data = caschool, main = "Test Scores and\nPercentage of english learners")
+
+plot(testscr ~ lunch, data = caschool, main = "Test Scores and\nPercentage of students qualifying\nfor free lunch")
+
+plot(testscr ~ calworks, data = caschool, main = "Test Scores and\nPercentage of students qualifying \nfor income assistance programme")
+```
+
+
+## {.smaller}
+
+```{r,  warning=FALSE}
+# models
+I <- lm(testscr ~ str, data = caschool)
+II <- lm(testscr ~ str + english, data = caschool)
+III <- lm(testscr ~ str + english + lunch, data = caschool)
+IV <- lm(testscr ~ str + english + calworks, data = caschool)
+V <- lm(testscr ~ str + english + lunch + calworks, data = caschool)
+
+# gather all the robust standard error values in a list
+robust_se <- list(
+  sqrt(diag(sandwich::vcovHC(I, type = "HC1"))),
+  sqrt(diag(sandwich::vcovHC(II, type = "HC1"))),
+  sqrt(diag(sandwich::vcovHC(III, type = "HC1"))),
+  sqrt(diag(sandwich::vcovHC(IV, type = "HC1"))),
+  sqrt(diag(sandwich::vcovHC(V, type = "HC1")))
+)
+
+## use the `stargazer()` function to represent the output in a tabular form
+stargazer::stargazer(I, II, III, IV, V, type = "text", 
+                     title = "Analysis of caschool dataset.",
+                     se = robust_se, digits = 3, 
+                     column.labels = c("I", "II", "III", "IV", "V"),
+                     column.sep.width = "1pt",
+                     notes = "Heteroskedasticity robust standard errors are given in parentheses under coefficients.", 
+                     notes.append = TRUE) 
+```

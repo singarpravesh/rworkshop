@@ -8,12 +8,12 @@
   </url>
   
   <url>
-    <loc>/2016/12/30/a-plain-markdown-post/</loc>
+    <loc>/rworkshop/2016-12-30-hello-markdown/</loc>
     <lastmod>2016-12-30T21:49:57-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>/rworkshop/</loc>
     <lastmod>2016-12-30T21:49:57-07:00</lastmod>
   </url>
   
@@ -28,7 +28,7 @@
   </url>
   
   <url>
-    <loc>/2015/07/23/hello-r-markdown/</loc>
+    <loc>/rworkshop/2015-07-23-r-rmarkdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url>
   
@@ -58,8 +58,12 @@
   </url>
   
   <url>
-    <loc>/2015/01/01/lorem-ipsum/</loc>
+    <loc>/rworkshop/2015-01-01-lorem-ipsum/</loc>
     <lastmod>2015-01-01T13:09:13-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/rworkshop/rworkshop/</loc>
   </url>
   
 </urlset>
