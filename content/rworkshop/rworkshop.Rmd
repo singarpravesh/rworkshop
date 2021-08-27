@@ -7,7 +7,7 @@ output: html_document
 
 
 
-# [Linear Regression](regression.html)
+# [slides](workshop.html){target="_blank"}
 
 
 

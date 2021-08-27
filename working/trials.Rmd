@@ -1,0 +1,114 @@
+---
+title: "Untitled"
+author: "pravesh"
+date: "24/08/2021"
+output: 
+  ioslides_presentation:
+    toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+---
+
+
+```{r}
+# read the layout
+
+`layout18-19` <- read_csv("layout18-19.csv", skip = 2, n_max = 32) %>% 
+  select(`Full Name`, `Field Length`, `Byte Position`, X7) %>% 
+  rename(Name = `Full Name`,
+         Length = `Field Length`,
+         Position1 = `Byte Position`,
+         Position2 = X7)
+
+
+## read the raw data 
+
+`hhv1_18-19` <- read_csv("http://mospi.nic.in/sites/default/files/reports_and_publication/PLFS_2018_2019/hh104_fv_final.txt", col_names = "raw") 
+
+
+## tidy data
+`hhv1_18-19` %>% 
+  separate(col = raw, into = `layout18-19`$Name,
+           sep = cumsum(as.numeric(`layout18-19`$Length)),
+           convert = TRUE) %>% View()
+
+
+
+
+```
+
+
+
+
+```{r}
+# read the layout
+`layout19-20` <- read_csv("layout19-20.csv", skip = 2, n_max = 32) %>% 
+  select(`Full Name`, `Field Length`, `Byte Position`, X7) %>% 
+  rename(Name = `Full Name`,
+         Length = `Field Length`,
+         Position1 = `Byte Position`,
+         Position2 = X7)
+
+
+
+## read the raw data 
+`hhv1_19-20` <- read_csv("http://mospi.nic.in/sites/default/files/reports_and_publication/PLFS_2019_2020/HHV1.TXT", col_names = "raw") 
+
+
+## tidy data
+`hhv1_19-20` %>% 
+  separate(col = raw, into = `layout19-20`$Name,
+           sep = cumsum(as.numeric(`layout19-20`$Length)),
+           convert = TRUE) %>%  View()
+
+
+
+
+```
+
+
+
+
+```{r}
+# check whether the layouts are identical (element wise checking)
+identical(`layout18-19`, `layout19-20`)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Slide 1
+
+This is the first slide. I'd like to be able to insert hyperlinks to
+a different page within the slide. For example:
+
+[Slide 2](#my_second_slide) - clicking this would jump to slide 2
+
+[Slide 3](#4) - clicking this would jump to slide 3
+
+
+
+## My second slide {#my_second_slide}
+
+
+Text for slide 2
+
+## My third slide
+
+
+

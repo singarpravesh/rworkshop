@@ -18,7 +18,8 @@ pre[class] {
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
+library(tidyverse)
+library(sandwich)
 ```
 
 
@@ -88,8 +89,9 @@ summarytools::dfSummary(caschool[, c('testscr', 'str')], graph.col = FALSE)
 ```
 
 
----
 
+
+---
 
 
 - The `lm()` function is used to fit a <u>**L**</u>inear <u>**M**</u>odel.
@@ -261,7 +263,9 @@ One can see that the expected test score in districts with STR<20 ($D_i=1$) is p
 
 # Multiple models in `stargazer` with heteroskedasticity-robust standard errors.
 
----
+
+
+## {.smaller}
 
 We shall consider the following models and graphically inspect the correlation and summarise all the regression results in a table.
 $$
@@ -293,6 +297,37 @@ plot(testscr ~ lunch, data = caschool, main = "Test Scores and\nPercentage of st
 plot(testscr ~ calworks, data = caschool, main = "Test Scores and\nPercentage of students qualifying \nfor income assistance programme")
 ```
 
+## Heteroskedasticity-robust standard errors.{.smaller}
+Consistent estimation of $\sigma_{\hat\beta_1}$ under heteroskedasticity (**Eicker–Huber–White standard errors**):
+$$
+SE(\hat\beta_1) = \sqrt{\frac{1}{n}.\frac{\frac{1}{n}\sum_{i=1}^{n}(X_i - \overline{X})^2\hat{u_i}^2}{\Big[ \frac{1}{n}\sum_{i=1}^{n}(X_i - \overline{X})^2\Big]^2}}
+$$
+
+Degrees of freedom correction and considered by MacKinnon & White (1985), The difference is that we multiply by $\frac{1}{n-2}$ in the numerator of the previous equation.
+$$
+SE(\hat\beta_1)_{HC1} = \sqrt{\frac{1}{n}.\frac{\frac{1}{n-2}\sum_{i=1}^{n}(X_i - \overline{X})^2\hat{u_i}^2}{\Big[ \frac{1}{n}\sum_{i=1}^{n}(X_i - \overline{X})^2\Big]^2}}
+$$
+
+
+---
+
+- variance-covariance heteroskedasticity-consistent matrix estimation using `vcovHC()` in the `sandwich` package.
+```{r}
+vcovHC(lm_model1, type = "HC1")
+class(vcovHC(lm_model1, type = "HC1"))
+```
+
+
+---
+
+
+- We are interested in the square root of the diagonal elements of this matrix, i.e., the standard error estimates.
+```{r}
+robust_se <- sqrt(diag(vcovHC(lm_model1, type = "HC1")
+))
+robust_se
+```
+
 
 ## {.smaller}
 
@@ -305,7 +340,7 @@ IV <- lm(testscr ~ str + english + calworks, data = caschool)
 V <- lm(testscr ~ str + english + lunch + calworks, data = caschool)
 
 # gather all the robust standard error values in a list
-robust_se <- list(
+robust_se1 <- list(
   sqrt(diag(sandwich::vcovHC(I, type = "HC1"))),
   sqrt(diag(sandwich::vcovHC(II, type = "HC1"))),
   sqrt(diag(sandwich::vcovHC(III, type = "HC1"))),
@@ -316,9 +351,54 @@ robust_se <- list(
 ## use the `stargazer()` function to represent the output in a tabular form
 stargazer::stargazer(I, II, III, IV, V, type = "text", 
                      title = "Analysis of caschool dataset.",
-                     se = robust_se, digits = 3, 
+                     se = robust_se1, digits = 3, 
                      column.labels = c("I", "II", "III", "IV", "V"),
                      column.sep.width = "1pt",
                      notes = "Heteroskedasticity robust standard errors are given in parentheses under coefficients.", 
                      notes.append = TRUE) 
 ```
+
+
+# Nonlinear regression
+
+
+## {.smaller}
+- The quadratic regression model
+$$
+testscr = \beta_0 + \beta_1income + \beta_2income^2+ u
+$$
+where, $income$ is the district average income in USD 1,000.
+
+
+---
+
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = caschool, aes(x = income, y = testscr))+
+  geom_point()+
+  geom_smooth(formula = y ~ x, se = FALSE, 
+              method = "lm", aes(colour = "linear"))+
+  geom_smooth(formula = y ~ x + I(x^2), se = FALSE, method = "lm", aes(colour = "quadratic")) +
+  labs(x = "Average income",
+       y = "Test Score",
+       colour = "Model")
+  
+```
+
+
+---
+
+
+
+```{r, message=FALSE, warning=FALSE}
+quad_model <- lm(testscr ~ income + I(income^2), data = caschool)
+stargazer::stargazer(
+  quad_model, type = "text", 
+  title = "Quadratic Model",
+  se = list(sqrt(diag(vcovHC(quad_model, type = "HC1")))),
+  notes = "Heteroskedasticity robust standard errors are given in parentheses under coefficients.", 
+                     notes.append = TRUE
+) # use out = "location" argument to print the table.
+```
+
+
