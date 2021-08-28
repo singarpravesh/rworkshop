@@ -1,0 +1,2758 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.74.3" />
+
+
+<title>RWorkshop - Linear regression  - rworkshop</title>
+<meta property="og:title" content="RWorkshop - rworkshop">
+
+
+  <link href='/favicona.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/pt.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="/workshop/">workshop</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+
+    <h1 class="article-title">RWorkshop</h1>
+
+    
+
+    <div class="article-content">
+      
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 150px;
+}
+</style>
+<div id="contents" class="section level2">
+<h2>Contents</h2>
+<p><a href="">Introduction to R and R Studio</a></p>
+</div>
+<div id="introduction-r-and-rstudio" class="section level1">
+<h1>Introduction | R and RStudio</h1>
+<ul>
+<li><a href="https://github.com/uo-ec607/lectures" class="uri">https://github.com/uo-ec607/lectures</a></li>
+</ul>
+<div id="design-of-the-r-system" class="section level2">
+<h2>Design of the R system</h2>
+<ul>
+<li>R system is divided into 2 conceptual parts –
+<ul>
+<li>The “base” R system that you download from CRAN <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a></li>
+<li>Everything else.</li>
+</ul></li>
+<li>The “base” package contains the most fundamental functions used to run R.</li>
+<li>The other packages can be downloaded and installed as per user requirements; for eg.<code>AER</code> package is required for econometrics.</li>
+</ul>
+</div>
+<div id="r-console" class="section level2">
+<h2>R-console</h2>
+<div class="figure">
+<img src="workshop/RConsole.png" alt="" />
+<p class="caption">R console</p>
+</div>
+</div>
+<div id="rstudio" class="section level2">
+<h2>RStudio</h2>
+<div class="figure">
+<img src="workshop/RStudio.png" alt="" />
+<p class="caption">RStudio</p>
+</div>
+</div>
+<div id="rstudio-1" class="section level2">
+<h2>RStudio</h2>
+<ul>
+<li>R Studio Integrated Development Environment (IDE) is a powerful and productive user interface for R.</li>
+<li>Like R, it is free and multi-platform. It can be downloaded from <a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a></li>
+<li>RStudio is a separate open-source project that brings many powerful coding tools together into an intuitive, easy-to-learn interface.</li>
+<li>The RStudio program can be run on the desktop or through a web browser.</li>
+<li>The desktop version is available for Windows, Mac OS X, and Linux platforms</li>
+</ul>
+</div>
+<div id="packages-in-r" class="section level2">
+<h2>Packages in R</h2>
+<ul>
+<li>A package is a related set of functions, help files, and data files that have been bundled together.</li>
+<li>For example, the <code>stats</code> package contains functions for doing statistical analysis. Some packages are included in R, other packages are available from public package repositories. You can also make your own packages!</li>
+<li>Visit the <a href="https://cran.r-project.org/">CRAN webpage</a> for details on contributed packages.</li>
+</ul>
+</div>
+<div id="r-commands-and-case-sensitivity" class="section level2">
+<h2>R Commands and Case Sensitivity</h2>
+<ul>
+<li>Technically R is an ‘expression language’ and is case sensitive, so <code>A</code> and <code>a</code> are different symbols and would refer to different variables.</li>
+<li>Commands are separated either by a new-line or a semi colon (<code>;</code>).</li>
+<li>Comments can be put almost anywhere starting with a <code>#</code>.</li>
+<li>If a command is not complete at the end of a line, R will give a different prompt, by default <code>+</code> on second and subsequent lines and continue to read input until the command is syntactically complete.</li>
+</ul>
+</div>
+</div>
+<div id="the-r-language-basic-concepts" class="section level1">
+<h1>The R-language | Basic Concepts</h1>
+<div id="the-assignment-operator" class="section level2">
+<h2>The assignment operator</h2>
+<ul>
+<li><code>&lt;-</code> is called the assignment operator, read as ‘gets’.</li>
+</ul>
+<pre class="r"><code># assign the value 1 to a.
+# a gets the value 1
+a &lt;- 1
+a</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>a &lt;- 1 + 2
+a</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="objects" class="section level2">
+<h2>Objects</h2>
+<ul>
+<li>The entries that R creates and manipulates are known as ‘objects’ (more on this later).</li>
+<li>During an R session objects are created and stored by name.</li>
+<li>The R command <code>objects()</code> can be used to display the names of the objects that are currently stored within R.</li>
+<li>The collection of objects currently stored is called the ‘workspace’.</li>
+<li>To remove objects the function <code>rm()</code> is available</li>
+</ul>
+<pre class="r"><code>objects(); a &lt;- 1+2; x
+objects()
+rm(x); objects()</code></pre>
+</div>
+<div id="r-has-5-basicatomic-classes-of-objects" class="section level2">
+<h2>R has 5 basic/atomic classes of objects</h2>
+<ul>
+<li>character: <code>"Hello"</code></li>
+<li>numeric(real numbers/decimal numbers): <code>c(1,2.36)</code>.</li>
+<li>integer: <code>10L</code></li>
+<li>complex :<code>2+4i</code></li>
+<li>logical: <code>TRUE/FALSE</code>.</li>
+</ul>
+<blockquote>
+<ul>
+<li>There are other <em>higher</em> classes of objects like the <code>vector</code>, <code>matrix</code>, <code>dataframe</code>, <code>list</code>, <code>tibble</code>, <code>lm</code> etc (we shall discuss them later).</li>
+</ul>
+</blockquote>
+<hr />
+<ul>
+<li><code>Inf</code> is a special number.</li>
+</ul>
+<pre class="r"><code>1/Inf</code></pre>
+<pre><code>## [1] 0</code></pre>
+<pre class="r"><code>Inf/Inf</code></pre>
+<pre><code>## [1] NaN</code></pre>
+<ul>
+<li><code>NaN</code> (Not A Number) is a value that represents an undefined value <code>NaN</code> may represent missing values as well.</li>
+</ul>
+<hr />
+<p>Objects in R have attributes like <code>names()</code>, <code>length()</code>, and <code>class()</code>, <code>dimnames()</code> (for a matrix, array or data frame).</p>
+<pre class="r"><code>a1 &lt;- 12; class(a1); length(a1)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>names(a1) &lt;- &#39;Number&#39;; names(a1)</code></pre>
+<pre><code>## [1] &quot;Number&quot;</code></pre>
+<hr />
+<p>You can name an object in R almost anything you want, but there are a few rules.</p>
+<ul>
+<li>First, a name cannot start with a number.</li>
+<li>Second, a name cannot use some special symbols,like <code>^</code>, <code>!</code>, <code>$</code>, <code>@</code>, <code>+</code>, <code>-</code>, <code>/</code>, or <code>*</code>.</li>
+</ul>
+</div>
+<div id="working-directory-projects" class="section level2">
+<h2>Working directory/ Projects</h2>
+<ul>
+<li>To check the location of your working directory, use <code>getwd()</code>and to set a specific folder as your working directory use <code>setwd("file path")</code>. [Demo]</li>
+<li>Projects [Demo]</li>
+</ul>
+</div>
+<div id="the-pass-by-value-and-pass-by-reference-in-r" class="section level2">
+<h2>The <em>pass-by-value</em> and <em>pass-by-reference</em> in R</h2>
+<p>By default, R uses “pass-by-value” paradigm. Consider the following example;</p>
+<pre class="r"><code>x &lt;- 1:10
+x*2
+x
+# or consider
+y &lt;- x
+x*3
+y</code></pre>
+</div>
+<div id="coercion" class="section level2 smaller">
+<h2>Coercion</h2>
+<ol style="list-style-type: decimal">
+<li>Implicit Coercion</li>
+<li>Explicit Coercion</li>
+</ol>
+<p>Implicit Coercion occurs when we try to combine objects of two or more different classes. The ordering is roughly <strong>LINCL</strong> i.e <code>logical &lt; integer &lt; numeric &lt; complex &lt; character&lt;list</code>.</p>
+<pre class="r"><code>x &lt;- c(1.7, &quot;a&quot;); class(x)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>y &lt;- c(TRUE, 2);class(y)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>z &lt;- c(&quot;a&quot;, TRUE);class(z)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="section" class="section level2 smaller">
+<h2></h2>
+<p>We can explicitly coerce objects by using <code>as.*()</code> functions.</p>
+<pre class="r"><code>x &lt;- c(0,1,2,3,4,5,6)
+class(x)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code>as.character(x)</code></pre>
+<pre><code>## [1] &quot;0&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;6&quot;</code></pre>
+<pre class="r"><code>as.complex(x)</code></pre>
+<pre><code>## [1] 0+0i 1+0i 2+0i 3+0i 4+0i 5+0i 6+0i</code></pre>
+<pre class="r"><code>as.logical(x)</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<hr />
+<p>Nonsensical coercion result in <code>NA</code>s. <code>NA</code> stands for Not Available.</p>
+<pre class="r"><code>x &lt;- c(&quot;my&quot;, &quot;name &quot;, &quot;is&quot;, &quot;khan!&quot;)
+as.numeric(x)</code></pre>
+<pre><code>## [1] NA NA NA NA</code></pre>
+<pre class="r"><code>as.complex(x)</code></pre>
+<pre><code>## [1] NA NA NA NA</code></pre>
+<pre class="r"><code>as.logical(x)</code></pre>
+<pre><code>## [1] NA NA NA NA</code></pre>
+</div>
+<div id="your-turn" class="section level2">
+<h2>Your turn</h2>
+<ul>
+<li>Create an integer vector that contains numbers 1 to 5 and assign it to <code>n</code>.</li>
+<li>Check the class of <code>n</code> and convert it to a character vector. Call it <code>n_c</code>.</li>
+</ul>
+</div>
+<div id="operations-on-matrices" class="section level2">
+<h2>Operations on Matrices</h2>
+<p>Matrices are vectors with <code>dimension()</code> attribute.</p>
+<pre class="r"><code>m &lt;- matrix(1:10, nrow = 2, ncol = 5)
+m</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10</code></pre>
+<pre class="r"><code>dim(m)</code></pre>
+<pre><code>## [1] 2 5</code></pre>
+<pre class="r"><code>length(m)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<pre class="r"><code>class(m)</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
+</div>
+<div id="subsetting-a-matrix" class="section level2">
+<h2>Subsetting a matrix</h2>
+<p>Subsetting a matrix with <code>[</code> will subset objects of the same class</p>
+<pre class="r"><code>x &lt;- matrix(1:10, 2, 5); x
+x[1,2]
+x[2,5]
+x[,2]
+x[2,]
+x[,1:3] # subset the first 3 columns of the matrix
+x[,c(2,4)] # subset the second and fourth columns
+x[1,c(2,4)] # subset the 1st row and second + fourth columns
+diag(x) # this works only for a square matrix
+t(x) # matrix transpose</code></pre>
+</div>
+<div id="your-turn-1" class="section level2">
+<h2>Your turn</h2>
+<ul>
+<li>Create a 10X6 matrix with numbers between -30 and 30 (excluding 0). (Hint: Use vector subsetting.)
+<ul>
+<li>Extract the first and second elements from the fourth row.</li>
+<li>Extract the second and fifth elements from the second row</li>
+</ul></li>
+</ul>
+</div>
+<div id="factors" class="section level2 smaller">
+<h2>Factors</h2>
+<ul>
+<li>Factors represent categorical data.</li>
+<li>Factors can be ordered or unordered.</li>
+<li>Factors can be thought as integer vector with labels, like 1 means ‘low’, 2 means ‘high’, 3 means ‘very high’.</li>
+<li>Example data set
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Names
+</th>
+<th style="text-align:left;">
+Gender
+</th>
+<th style="text-align:left;">
+Month.Birth
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Kunal
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+January
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ben
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kritika
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reena
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+December
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Narendra
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Smriti
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<hr />
+<p>We can create factors using the information in the previous table:</p>
+<pre class="r"><code>(Names &lt;- c(&quot;Kunal&quot;, &quot;Ben&quot;, &quot;Kritika&quot;, &quot;Reena&quot;, &quot;Narendra&quot;, &quot;Smriti&quot;))
+(Gender &lt;- factor(c(&quot;Male&quot;, &quot;Male&quot;, &quot;Female&quot;, &quot;Female&quot;, &quot;Male&quot;, &quot;Female&quot;)))
+(Month.Birth &lt;- factor(c(&quot;January&quot;, &quot;March&quot;, &quot;March&quot;, &quot;December&quot;, &quot;October&quot;, &quot;October&quot;)))
+(Month.Birth &lt;- factor(c(&quot;January&quot;, &quot;March&quot;, &quot;March&quot;, &quot;December&quot;, &quot;October&quot;, &quot;October&quot;), levels = c(&quot;January&quot;, &quot;March&quot;, &quot;October&quot;, &quot;December&quot;)))</code></pre>
+</div>
+<div id="extraction-and-subsetting" class="section level2 smaller">
+<h2>Extraction and subsetting</h2>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Names
+</th>
+<th style="text-align:left;">
+Gender
+</th>
+<th style="text-align:left;">
+Month.Birth
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Kunal
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+January
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ben
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kritika
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reena
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+December
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Narendra
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Smriti
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Which month was Smriti born in?</li>
+</ul>
+<pre class="r"><code>Month.Birth[Names == &quot;Smriti&quot;]</code></pre>
+<pre><code>## [1] October
+## Levels: December January March October</code></pre>
+</div>
+<div id="extraction-and-subsetting-1" class="section level2 smaller">
+<h2>Extraction and subsetting</h2>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Names
+</th>
+<th style="text-align:left;">
+Gender
+</th>
+<th style="text-align:left;">
+Month.Birth
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Kunal
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+January
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ben
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kritika
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+March
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reena
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+December
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Narendra
+</td>
+<td style="text-align:left;">
+Male
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Smriti
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+October
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Which boy was born in March?</li>
+</ul>
+<pre class="r"><code>Names[Gender == &quot;Male&quot; &amp; Month.Birth == &quot;March&quot;]</code></pre>
+<pre><code>## [1] &quot;Ben&quot;</code></pre>
+</div>
+<div id="releveling-a-factor" class="section level2">
+<h2>Releveling a factor</h2>
+<pre class="r"><code>(levels(Month.Birth) &lt;- c(1, 3, 10, 12))</code></pre>
+<pre><code>## [1]  1  3 10 12</code></pre>
+<pre class="r"><code>(levels(Gender) &lt;- c(0, 1)) # 0 indicates female</code></pre>
+<pre><code>## [1] 0 1</code></pre>
+</div>
+<div id="defining-and-ordering-levels" class="section level2">
+<h2>Defining and Ordering levels</h2>
+<ul>
+<li>Performance ratings example</li>
+</ul>
+<pre class="r"><code>m &lt;- c(&quot;Poor&quot;, &quot;Good&quot;, &quot;Better&quot;)
+rate &lt;- factor(m)
+
+(rate &lt;- factor(m, ordered = TRUE,
+                levels = m))</code></pre>
+<pre><code>## [1] Poor   Good   Better
+## Levels: Poor &lt; Good &lt; Better</code></pre>
+</div>
+<div id="defining-and-ordering-levels-1" class="section level2">
+<h2>Defining and Ordering levels</h2>
+<ul>
+<li>LIKERT scale example</li>
+</ul>
+<pre class="r"><code>s &lt;- 1:5
+rating &lt;- factor(s)
+
+(rating &lt;- factor(s, ordered = TRUE,
+                levels = s))</code></pre>
+<pre><code>## [1] 1 2 3 4 5
+## Levels: 1 &lt; 2 &lt; 3 &lt; 4 &lt; 5</code></pre>
+</div>
+<div id="your-turn-2" class="section level2 smaller">
+<h2>Your turn</h2>
+<style>
+.divScroll {
+overflow:scroll;
+height:500px;
+width:900px;
+}
+</style>
+<div class="divScroll">
+<p>The Indian government consists of the political parties <strong>BJP</strong>, <strong>INC</strong>, <strong>CPI</strong>, <strong>TMC</strong> and other parties grouped under <strong>Others</strong> category. Suppose you asked 20 Indians which of these they identified most with and obtained the following data:</p>
+<ul>
+<li>There were 12 males and 8 females; the individuals numbered 1, 5-7, 12, and 14-16 were females.</li>
+<li>The individuals numbered 1,4,12,15,16 and 19 identified with <em>BJP</em>; no one identified with <em>CPI</em>, the individuals numbered 6,9 and 11 identified with <em>INC</em>, 10 and 20 identified with <em>Others</em>, and the rest with <em>TMC</em>.</li>
+</ul>
+<p>a.Use your knowledge of vectors (for example, subsetting and overwriting) to create two character vectors: <strong>sex</strong> with entries “M” (male) and “F” (female) and <strong>party</strong> with entries “BJP”, “INC”, “CPI”, “TMC”, and “Others”. Make sure the entries are placed in the correct positions as outlined earlier.</p>
+<p>b.Create two different factor vectors based on <strong>sex</strong> and <strong>party</strong>. Does it make any sense to use <code>ordered=TRUE</code> in either case? How has R appeared to arrange the levels?</p>
+<p>c.Use factor subsetting to do the following:
+i. Return the factor vector of chosen parties for only the male participants.
+ii. Return the factor vector of genders for those who chose BJP.</p>
+<p>d.Another six people joined the survey, with the results <strong>c(“BJP”,“INC”,“INC”,“CPM”,“TMC”,“BJP”)</strong> for the preferred party and <strong>c(“M”,“M”,“F”,“F”,“F”,“M”)</strong> as their gender. Combine these results with the original factors from (b).</p>
+</div>
+</div>
+<div id="data-frames" class="section level2">
+<h2>Data frames</h2>
+<ul>
+<li>Data frames are used to store tabular data.</li>
+<li>Data frames have an advantage over matrices in that they can store objects of different classes.</li>
+</ul>
+<pre class="r"><code>mydata &lt;- data.frame(Name =   c(&quot;Kunal&quot;, &quot;Ben&quot;, &quot;Kritika&quot;, &quot;Reena&quot;, &quot;Narendra&quot;, &quot;Smriti&quot;),
+Gender = factor(c(&quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;), levels = c(&quot;M&quot;, &quot;F&quot;)),
+Age = c(20, 18, 30, 24, 24, 27))
+mydata</code></pre>
+<pre><code>##       Name Gender Age
+## 1    Kunal      M  20
+## 2      Ben      M  18
+## 3  Kritika      F  30
+## 4    Reena      F  24
+## 5 Narendra      M  24
+## 6   Smriti      F  27</code></pre>
+</div>
+<div id="section-1" class="section level2 smaller">
+<h2></h2>
+<ul>
+<li>Subsetting</li>
+</ul>
+<pre class="r"><code>mydata$Name</code></pre>
+<pre><code>## [1] &quot;Kunal&quot;    &quot;Ben&quot;      &quot;Kritika&quot;  &quot;Reena&quot;    &quot;Narendra&quot; &quot;Smriti&quot;</code></pre>
+<pre class="r"><code>mydata[,c(&quot;Name&quot;, &quot;Age&quot;)]</code></pre>
+<pre><code>##       Name Age
+## 1    Kunal  20
+## 2      Ben  18
+## 3  Kritika  30
+## 4    Reena  24
+## 5 Narendra  24
+## 6   Smriti  27</code></pre>
+<pre class="r"><code>mydata[,c(1,3)]</code></pre>
+<pre><code>##       Name Age
+## 1    Kunal  20
+## 2      Ben  18
+## 3  Kritika  30
+## 4    Reena  24
+## 5 Narendra  24
+## 6   Smriti  27</code></pre>
+</div>
+<div id="tibble" class="section level2">
+<h2>Tibble</h2>
+<ul>
+<li>Tibbles are data frames tweaked to work better in the <code>tidyverse</code>.</li>
+<li>It’s possible for a tibble to have column names that are not valid R variable names, aka non-syntactic names.</li>
+</ul>
+<pre class="r"><code>tibble(
+  `:)` = &quot;smile&quot;, 
+  ` ` = &quot;space&quot;,
+  `2000` = &quot;number&quot;
+)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   `:)`  ` `   `2000`
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 smile space number</code></pre>
+<hr />
+<ul>
+<li>Another way to create a tibble is with <code>tribble()</code>, short for t<strong>r</strong>ansposed tibble.</li>
+</ul>
+<pre class="r"><code>tribble(
+  ~x, ~y, ~z,
+  &quot;a&quot;, 2, 3.6,
+  &quot;b&quot;, 1, 8.5
+)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   x         y     z
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a         2   3.6
+## 2 b         1   8.5</code></pre>
+</div>
+<div id="printing-large-datasets" class="section level2">
+<h2>Printing large datasets</h2>
+<div style="float: left; width: 45%;">
+<pre class="r"><code>library(AER); data(&quot;Journals&quot;)
+Journals</code></pre>
+<pre><code>##                                                            title
+## APEL                           Asian-Pacific Economic Literature
+## SAJoEH                 South African Journal of Economic History
+## CE                                       Computational Economics
+## MEPiTE       MOCT-MOST Economic Policy in Transitional Economics
+## JoSE                                  Journal of Socio-Economics
+## LabEc                                           Labour Economics
+## EDE                        Environment and Development Economics
+## RoRPE                      Review of Radical Political Economics
+## EoP                                        Economics of Planning
+## Mt                                                Metroeconomica
+## JoCP                                  Journal of Consumer Policy
+## REE                                        Real Estate Economics
+## DPR                                    Development Policy Review
+## MaDE                                Managerial and Decision Econ
+## JoEF                                Journal of Empirical Finance
+## JoEMS               International Journal of Finance &amp; Economics
+## JoE&amp;MS                Journal of Economics &amp; Management Strategy
+## AEJ                                    Atlantic Economic Journal
+## EDQ                               Economic Development Quarterly
+## CER                                        China Economic Review
+## IEP                             Information Economics and Policy
+## AEP                                   Australian Economic Papers
+## JWE                                  Japan and the World Economy
+## JoES                                 Journal of Economic Surveys
+## IME                           Insurance  Mathematics &amp; Economics
+## DE                                                  De Economist
+## RoSE                                    Review of Social Economy
+## BP                                              Brookings Papers
+## PiRS                                  Papers in Regional Science
+## JoPE                             Journal of Population Economics
+## FS                                       Finance and Stochastics
+## IO                                    International Organization
+## CPP                                       Canadian Public Policy
+## DvE                                         Developing Economies
+## JoHoEc                              Journal of Housing Economics
+## JoEB                             Journal of Economics &amp; Business
+## JoEvEc                         Journal of Evolutionary Economics
+## EmpEc                                        Empirical Economics
+## ER                                           Econometric Reviews
+## AgE                                       Agricultural Economics
+## QRoEF                    Quarterly Review of Economics &amp; Finance
+## AEL                                    Applied Economics Letters
+## EM                                            Economic Modelling
+## GC                                             Growth and Change
+## ERE                         Environmental and Resource Economics
+## JoRE                             Journal of Regulatory Economics
+## BoIES                    Bulletin of Indonesian Economic Studies
+## AoRS                                  Annals of Regional Science
+## CEP                                 Contemporary Economic Policy
+## JoEcEd                             Journal of Economic Education
+## JoJIE          Journal of the Japanese &amp; International Economies
+## EaP                                     Economics and Philosophy
+## JoFI                         Journal of Financial Intermediation
+## RaEE                               Resource and Energy Economics
+## ORoEP                           Oxford Review of Economic Policy
+## RoIO                           Review of Industrial Organization
+## IRoLE                    International Review of Law &amp; Economics
+## JoWT                                      Journal of World Trade
+## JoM                                    Journal of Macroeconomics
+## AJoES                  American Journal of Economics &amp; Sociology
+## PFR                                        Public Finance Review
+## MnchSc                                         Manchester School
+## EnE                                             Energy Economics
+## ERoAE                  European Review of Agricultural Economics
+## LH                                                 Labor History
+## WA       Weltwirtschaftliches Archiv / Review of World Economics
+## SJoPE                      Scottish Journal of Political Economy
+## DC                                        Development and Change
+## JoREFE              Journal of Real Estate Finance and Economics
+## JoPopEc                               Journal of Policy Modeling
+## JoPKE                        Journal of Post-Keynesian Economics
+## EP                                               Economic Policy
+## MSS                                 Mathematical Social Sciences
+## Om                                                         Omega
+## HoPE                                History of Political Economy
+## EcRec                                            Economic Record
+## JoPA                            Journal of Productivity Analysis
+## RoIW                                 Review of Income and Wealth
+## JoRI                               Journal of Risk and Insurance
+## TWE                                            The World Economy
+## JoAE                           Journal of Agricultural Economics
+## EoER                               Economics of Education Review
+## JoLR                                   Journal of Labor Research
+## TD                                           Theory and Decision
+## SCW                                      Social Choice &amp; Welfare
+## JoCE                            Journal of Comparative Economics
+## JoEP                              Journal of Economic Psychology
+## IJoF                        International Journal of Forecasting
+## Ky                                                        Kyklos
+## EiEH                            Explorations in Economic History
+## ET                                               Economic Theory
+## JoTEP                    Journal of Transport Economics &amp; Policy
+## BJoIR                    British Journal of Industrial Relations
+## JoCMS                           Journal of Common Market Studies
+## JoFM                                  Journal of Futures Markets
+## JITE            Journal of Institutional &amp; Theoretical Economics
+## IJoIO           International Journal of Industrial Organization
+## JoFo                                      Journal of Forecasting
+## ORL                                  Operations Research Letters
+## SJoE                           Scandinavian Journal of Economics
+## CJoE                              Cambridge Journal of Economics
+## JoEI                                  Journal of Economic Issues
+## RSUE                          Regional Science &amp; Urban Economics
+## IJoGT                       International Journal of Game Theory
+## JoRaU                            Journal of Risk and Uncertainty
+## JoRU              Journal of Financial and Quantitative Analysis
+## JoDS                              Journal of Development Studies
+## EcmtrT                                        Econometric Theory
+## JoRS                                 Journal of Regional Science
+## JoA&amp;E                          Journal of Accounting &amp; Economics
+## GaEB                                 Games and Economic Behavior
+## JAE                              Journal of Applied Econometrics
+## JoMathEc                       Journal of Mathematical Economics
+## JoIMF                 Journal of International Money and Finance
+## RS                                              Regional Studies
+## PDR                              Population &amp; Development Review
+## ES                                           Economy and Society
+## DS                                             Decision Sciences
+## JoIndEc                          Journal of Industrial Economics
+## EE                                          Ecological Economics
+## NTJ                                         National Tax Journal
+## US                                                 Urban Studies
+## HE                                              Health Economics
+## EHR                                      Economic History Review
+## RoFS                                 Review of Financial Studies
+## CJE                                Canadian Journal of Economics
+## RA                                                 Risk Analysis
+## AE                                             Applied Economics
+## OEP                                       Oxford Economic Papers
+## EDCC                      Economic Development &amp; Cultural Change
+## JoBF                              Journal of Banking and Finance
+## OBoES                  Oxford Bulletin of Economics &amp; Statistics
+## JoEDC                     Journal of Economic Dynamics &amp; Control
+## SEJ                                    Southern Economic Journal
+## JoMS                               Journal of Management Studies
+## JoBE                                  Journal of Business Ethics
+## Dm                                                    Demography
+## EI                                              Economic Inquiry
+## JoEBO                Journal of Economic Behavior &amp; Organization
+## JoLS                                    Journal of Legal Studies
+## JoDE                            Journal of Development Economics
+## LanEc                                             Land Economics
+## JoLE                                  Journal of Labor Economics
+## JoEH                                 Journal of Economic History
+## JoUE                                  Journal of Urban Economics
+## Ecnmc                                                  Economica
+## JoMCB                          Journal of Money Credit &amp; Banking
+## JoIntEc                       Journal of International Economics
+## PC                                                 Public Choice
+## RP                                               Research Policy
+## EL                                             Economics Letters
+## JoHeEc                               Journal of Health Economics
+## JBES                   Journal of Business &amp; Economic Statistics
+## RJoE                                   Rand Journal of Economics
+## JoB                                          Journal of Business
+## JoHR                                  Journal of Human Resources
+## IER                                International Economic Review
+## JoEEM             Journal of Environmental Economics &amp; Managment
+## EER                                     European Economic Review
+## WD                                             World Development
+## JoPubEc                              Journal of Public Economics
+## JEL                               Journal of Economic Literature
+## JoLaE                               Journal of Law and Economics
+## JEP                             Journal of Economic Perspectives
+## AJoAE                 American Journal of Agricultural Economics
+## JoMonEc                            Journal of Monetary Economics
+## MngtSc                                        Management Science
+## RoE&amp;S                           Review of Economics &amp; Statistics
+## RoES                                  Review of Economic Studies
+## JoE                                      Journal of Econometrics
+## JoET                                  Journal of Economic Theory
+## EJ                                              Economic Journal
+## JoFE                              Journal of Financial Economics
+## JoCR                                Journal of Consumer Research
+## JASA             Journal of the American Statistical Association
+## JoFi                                          Journal of Finance
+## QJoE                              Quarterly Journal of Economics
+## JoPolEc                             Journal of Political Economy
+## Ecnmt                                               Econometrica
+## AER                                     American Economic Review
+##                            publisher society price pages charpp citations
+## APEL                       Blackwell      no   123   440   3822        21
+## SAJoEH        So Afr ec history assn      no    20   309   1782        22
+## CE                            Kluwer      no   443   567   2924        22
+## MEPiTE                        Kluwer      no   276   520   3234        22
+## JoSE                        Elsevier      no   295   791   3024        24
+## LabEc                       Elsevier      no   344   609   2967        24
+## EDE              Cambridge Univ Pres      no    90   602   3185        24
+## RoRPE                       Elsevier      no   242   665   2688        27
+## EoP                           Kluwer      no   226   243   3010        28
+## Mt                         Blackwell      no   262   386   2501        30
+## JoCP                          Kluwer      no   279   578   2200        32
+## REE                              MIT      no   165   749   2496        35
+## DPR                        Blackwell      no   242   427   2731        36
+## MaDE                           Wiley      no   905   292   4472        37
+## JoEF                        Elsevier      no   355   607   3053        37
+## JoEMS                       Springer      no   375   351   4025        40
+## JoE&amp;MS                     MIT Press      no   135   602   2394        42
+## AEJ          Intnl Atlantic Ec. Soc.      no   171   447   3139        44
+## EDQ                             Sage      no   284   385   3318        47
+## CER                         Elsevier      no   242   167   3619        47
+## IEP                         Elsevier      no   371   442   2924        50
+## AEP                        Blackwell      no   115   495   3792        51
+## JWE                         Elsevier      no   355   577   3443        56
+## JoES                       Blackwell      no   355   674   2835        61
+## IME                         Elsevier      no   835   745   4263        61
+## DE                            Kluwer      no   223   579   2594        62
+## RoSE                       Routledge      no   172   578   2720        66
+## BP                   Brookings Inst.      no    62   394   2368        67
+## PiRS                        Springer      no   191   442   2925        68
+## JoPE                        Springer      no   411   640   3264        69
+## FS                          Springer      no   274   492   3060        69
+## IO                               MIT      no   130   814   3024        69
+## CPP      University of Toronto Press      no   100   714   2248        75
+## DvE               Inst of Devel Econ      no    80   539   3345        76
+## JoHoEc                Academic Press      no   235   330   2623        78
+## JoEB                        Elsevier      no   392   563   3456        80
+## JoEvEc                      Springer      no   410   526   2989        81
+## EmpEc                       Springer      no   464   719   3366        82
+## ER                            Dekker      no   650   448   2418        85
+## AgE                         Elsevier      no   558   610   4032        87
+## QRoEF                       Elsevier      no   317   931   3036        87
+## AEL                        Routledge      no   495   774   5610        89
+## EM                          Elsevier      no   535   632   2880        89
+## GC                         Blackwell      no   123   302   2772        97
+## ERE                           Kluwer      no   717  1061   2924        97
+## JoRE                          Kluwer      no   481   628   3666        98
+## BoIES                      ANU Press      no    54   518   2858        98
+## AoRS                        Springer      no   379   580   2914       100
+## CEP                Oxford Univ Press      no   168   566   4104       109
+## JoEcEd                       Heldref      no    82   426   2990       112
+## JoJIE                 Academic Press      no   355   451   2541       119
+## EaP              Cambridge Univ Pres      no    95   373   2574       121
+## JoFI                  Academic Press      no   240   420   2773       121
+## RaEE                        Elsevier      no   448   416   3010       122
+## ORoEP              Oxford Univ Press      no   255   600   4284       124
+## RoIO                          Kluwer      no   448   792   1820       126
+## IRoLE                       Elsevier      no   392   585   3479       126
+## JoWT                          Kluwer      no   475  1138   3088       134
+## JoM                        LSU Press      no    85   856   2562       137
+## AJoES                      Blackwell      no   108   578   2331       138
+## PFR                             Sage      no   394   636   2204       138
+## MnchSc                     Blackwell      no   336   618   2772       140
+## EnE                         Elsevier      no   565   495   3038       143
+## ERoAE              Oxford Univ Press      no   255   573   3228       144
+## LH                            Carfax      no   165   515   3430       147
+## WA                      Mohr Siebeck      no    99   758   2499       150
+## SJoPE                      Blackwell      no   203   596   3036       151
+## DC                         Blackwell      no   318   888   2623       154
+## JoREFE                        Kluwer      no   476   630   3432       162
+## JoPopEc                     Elsevier      no   473   907   2160       164
+## JoPKE                     M.E Sharpe      no   186   550   2360       170
+## EP                         Blackwell      no   170   440   2856       179
+## MSS                         Elsevier      no   824   697   3420       180
+## Om                          Elsevier      no   805   780   4028       183
+## HoPE                 Duke Univ Press      no   132   767   2280       183
+## EcRec       Ec. Society of Australia     yes    50   421   4320       188
+## JoPA                          Kluwer      no   424   567   3432       188
+## RoIW       Int Assn for Res in I &amp; W     yes   130   585   3312       189
+## JoRI            Am. Risk &amp; Ins. Assn     yes    90   720   2924       193
+## TWE                        Blackwell      no   805  1270   2842       214
+## JoAE            Agric. Econ. Society     yes    96   277   4218       220
+## EoER                        Elsevier      no   448   471   5040       224
+## JoLR               George Mason Univ      no   130   725   3010       227
+## TD                            Kluwer      no   595   607   2072       237
+## SCW                         Springer      no   474   674   2990       239
+## JoCE                  Academic Press      no   410   803   2442       245
+## JoEP                        Elsevier      no   395   802   2535       245
+## IJoF                        Elsevier      no   437   464   4324       249
+## Ky             Helbing &amp; Lichtenhahn      no   270   618   2760       254
+## EiEH                  Academic Press      no   265   447   2904       261
+## ET                          Springer      no   899  1493   2806       264
+## JoTEP           LSE and Univ of Bath      no   133   406   3182       292
+## BJoIR                      Blackwell      no   262   663   3450       294
+## JoCMS                      Blackwell      no   506   710   2747       299
+## JoFM                           Wiley      no  1140   990   2460       302
+## JITE                    Mohr Siebeck      no   211   792   3402       313
+## IJoIO                       Elsevier      no   799  1230   3124       313
+## JoFo                           Wiley      no   760   516   4032       317
+## ORL                         Elsevier      no   442   460   4056       338
+## SJoE                       Blackwell      no   296   688   2666       339
+## CJoE               Oxford Univ Press      no   272   814   3545       351
+## JoEI              Assn Ev. Economics     yes    45  1003   2870       355
+## RSUE                        Elsevier      no   614   802   2967       370
+## IJoGT                       Springer      no   436   582   3366       382
+## JoRaU                         Kluwer      no   481   595   3476       383
+## JoRU                 Univ Wash Press      no    95   500   3314       388
+## JoDS                      Frank Cass      no   357   500   2604       388
+## EcmtrT           Cambridge Univ Pres      no   280   899   2948       390
+## JoRS                       Blackwell      no   142   764   2992       397
+## JoA&amp;E                       Elsevier      no   710  1112   2945       406
+## GaEB                  Academic Press      no   490  1197   2460       412
+## JAE                            Wiley      no   870   689   3680       412
+## JoMathEc                    Elsevier      no  1147  1340   2940       418
+## JoIMF                       Elsevier      no   743   940   2660       427
+## RS                            Carfax      no   759   911   4988       440
+## PDR               Population Council      no    36   910   2904       445
+## ES                         Routledge      no   224   640   2970       488
+## DS                Georgia State Univ      no    82  1067   3124       495
+## JoIndEc                    Blackwell      no   160   476   2684       497
+## EE                          Elsevier      no  1170  1990   4128       499
+## NTJ               National Tax Assn.      no    90   785   2940       502
+## US                            Carfax      no   742  1711   3747       508
+## HE                             Wiley      no   575   736   4264       544
+## EHR                        Blackwell      no   163   846   3570       545
+## RoFS              Oxford Univ. Press      no   175  1235   2604       547
+## CJE                        Blackwell     yes   120  1247   2992       556
+## RA                            Kluwer      no   590  1260   4628       574
+## AE                         Routledge      no  2120  1683   5445       578
+## OEP               Oxford Univ. Press      no   205   767   2924       582
+## EDCC           Univ of Chicago Press      no   128   889   2700       597
+## JoBF                        Elsevier      no  1539  1911   2516       602
+## OBoES                      Blackwell      no   346   545   2655       617
+## JoEDC                       Elsevier     yes  1046  1636   2945       636
+## SEJ              Southern Econ. Assn     yes    97  1032   3680       646
+## JoMS                       Blackwell      no   686   850   3456       654
+## JoBE                          Kluwer      no   914  1270   3650       662
+## Dm                  Pop Assn America      no    85   568   6859       670
+## EI                 Oxford Univ Press      no   206   684   4134       684
+## JoEBO                       Elsevier      no  1154  1380   3330       698
+## JoLS           Univ of Chicago Press      no    45   530   2625       700
+## JoDE                        Elsevier      no  1146  1110   2816       707
+## LanEc        Univ of Wisconsin Press      no    95   580   3672       730
+## JoLE           Univ of Chicago Press      no   138   600   2728       733
+## JoEH             Cambridge Univ Pres      no   115  1200   4029       737
+## JoUE                  Academic Press      no   640  1058   2666       787
+## Ecnmc                      Blackwell      no   122   565   3120       825
+## JoMCB         Ohio State Univ. Press      no   110   860   3168       834
+## JoIntEc                     Elsevier      no   923  1299   2898       838
+## PC                            Kluwer      no  1000  1600   2583       871
+## RP                          Elsevier      no  1234   781   4320       922
+## EL                          Elsevier      no  1492  1540   3315       930
+## JoHeEc                      Elsevier      no   810   828   2924       957
+## JBES                    Am Stat Assn     yes    90   510   6360       988
+## RJoE                            RAND      no   177   757   3450      1039
+## JoB            Univ of Chicago Press      no    74   583   2655      1083
+## JoHR         Univ of Wisconsin Press      no   113   837   3312      1113
+## IER                        Blackwell      no   145   969   3082      1113
+## JoEEM                 Academic Press      no   590   636   3096      1152
+## EER                         Elsevier     yes  1154  1823   2178      1243
+## WD                          Elsevier      no  1450  1145   5480      1408
+## JoPubEc                     Elsevier      no  1431  1880   2924      1437
+## JEL                       Am Ec Assn     yes    47  2632   3848      1530
+## JoLaE          Univ of Chicago Press      no    45   850   2604      1580
+## JEP                       Am Ec Assn     yes    47   940   3036      1583
+## AJoAE              Am. Ag. Econ Assn      no    81  1253   4368      1812
+## JoMonEc                     Elsevier      no  1010  1346   3174      1860
+## MngtSc            Inst for OR and MS      no   334  1175   4232      2022
+## RoE&amp;S                      MIT press      no   190   733   5600      2331
+## RoES                       Blackwell      no   180   761   3626      2411
+## JoE                         Elsevier      no  1893  1527   2178      2479
+## JoET                  Academic Press      no  1400  2000   2684      2514
+## EJ                         Blackwell      no   301  1983   3036      2540
+## JoFE                        Elsevier      no  1339  1947   2838      2676
+## JoCR           Univ of Chicago Press      no    90   439   5336      2762
+## JASA            Am. Statistical Assn     yes   310  1260   5664      2800
+## JoFi                Am. Finance Assn     yes   226  2272   3036      3791
+## QJoE                       MIT press      no   148  1467   2184      4138
+## JoPolEc        Univ of Chicago Press      no   159  1669   2640      6697
+## Ecnmt                      Blackwell     yes   178  1482   2992      7943
+## AER                       Am Ec Assn     yes    47  1867   3900      8999
+##          foundingyear subs                   field
+## APEL             1986   14                 General
+## SAJoEH           1986   59        Economic History
+## CE               1987   17             Specialized
+## MEPiTE           1991    2            Area Studies
+## JoSE             1972   96       Interdisciplinary
+## LabEc            1994   15                   Labor
+## EDE              1995   14             Development
+## RoRPE            1968  202             Specialized
+## EoP              1987   46            Area Studies
+## Mt               1949   46                 General
+## JoCP             1978   57      Consumer Economics
+## REE              1973  125             Specialized
+## DPR              1982   30             Development
+## MaDE             1980   62      Management Science
+## JoEF             1994   16                 Finance
+## JoEMS            1996   17                 Finance
+## JoE&amp;MS           1992   37      Management Science
+## AEJ              1972  148                 General
+## EDQ              1987  110             Development
+## CER              1989   16            Area Studies
+## IEP              1984   30             Specialized
+## AEP              1961   61                 General
+## JWE              1988   27            Area Studies
+## JoES             1987   45                 General
+## IME              1982   15               Insurance
+## DE               1852   25                 General
+## RoSE             1943  203                 General
+## BP               1970  646          Public Finance
+## PiRS             1922   59      Urban and Regional
+## JoPE             1987   27              Demography
+## FS               1996   31                 Finance
+## IO               1947  532 Industrial Organization
+## CPP              1975   52          Public Finance
+## DvE              1963   87             Development
+## JoHoEc           1982   27             Specialized
+## JoEB             1948  291                Business
+## JoEvEc           1991    9             Specialized
+## EmpEc            1976   24                 General
+## ER               1981   49            Econometrics
+## AgE              1986   24  Agricultural Economics
+## QRoEF            1961  323                 Finance
+## AEL              1994   69                 General
+## EM               1983   21                 General
+## GC               1969  212             Development
+## ERE              1992   14       Natural Resources
+## JoRE             1991   38 Industrial Organization
+## BoIES            1964   22             Specialized
+## AoRS             1967   77      Urban and Regional
+## CEP              1982  290          Public Finance
+## JoEcEd           1970  386             Specialized
+## JoJIE            1986   50            Area Studies
+## EaP              1984  144       Interdisciplinary
+## JoFI             1991   48                 Finance
+## RaEE             1978   33       Natural Resources
+## ORoEP            1985   29          Public Finance
+## RoIO             1990   58 Industrial Organization
+## IRoLE            1980   71       Law and Economics
+## JoWT             1967  135           International
+## JoM              1979  183          Macroeconomics
+## AJoES            1941  573       Interdisciplinary
+## PFR              1973  268          Public Finance
+## MnchSc           1930   57                 General
+## EnE              1978   52       Natural Resources
+## ERoAE            1974   21  Agricultural Economics
+## LH               1960  479                   Labor
+## WA               1865   77                 General
+## SJoPE            1953   89                 General
+## DC               1970   83             Development
+## JoREFE           1990   59                Business
+## JoPopEc          1979   67             Specialized
+## JoPKE            1978  225                 General
+## EP               1985   56          Public Finance
+## MSS              1981   36       Interdisciplinary
+## Om               1973  101                Business
+## HoPE             1969  288        Economic History
+## EcRec            1925  183                 General
+## JoPA             1992   25                 General
+## RoIW             1945  120          Public Finance
+## JoRI             1964  263               Insurance
+## TWE              1977  101             Development
+## JoAE             1948   43  Agricultural Economics
+## EoER             1982   73             Specialized
+## JoLR             1980  221                   Labor
+## TD               1970   83                  Theory
+## SCW              1984   37          Public Finance
+## JoCE             1977  185            Area Studies
+## JoEP             1981   61       Interdisciplinary
+## IJoF             1985   57             Specialized
+## Ky               1948  186                 General
+## EiEH             1963  199        Economic History
+## ET               1992  165                  Theory
+## JoTEP            1967   95             Specialized
+## BJoIR            1963   82             Specialized
+## JoCMS            1962  214            Area Studies
+## JoFM             1981  152                 Finance
+## JITE             1844   33                 General
+## IJoIO            1983   81 Industrial Organization
+## JoFo             1982  137             Specialized
+## ORL              1982   59      Management Science
+## SJoE             1898   98                 General
+## CJoE             1976  163                 General
+## JoEI             1967  462          Public Finance
+## RSUE             1971   99      Urban and Regional
+## IJoGT            1971   52                  Theory
+## JoRaU            1990   47               Insurance
+## JoRU             1966  394                 Finance
+## JoDS             1964  227             Development
+## EcmtrT           1985   65            Econometrics
+## JoRS             1961  242      Urban and Regional
+## JoA&amp;E            1979  154       Interdisciplinary
+## GaEB             1988   45                  Theory
+## JAE              1986   81            Econometrics
+## JoMathEc         1974   79                  Theory
+## JoIMF            1981  120           International
+## RS               1967   91      Urban and Regional
+## PDR              1975  218              Demography
+## ES               1971   97                 General
+## DS               1970  322      Management Science
+## JoIndEc          1953  283 Industrial Organization
+## EE               1989   40       Natural Resources
+## NTJ              1948  552          Public Finance
+## US               1964  222      Urban and Regional
+## HE               1992   29                  Health
+## EHR              1947  390        Economic History
+## RoFS             1988   95                 Finance
+## CJE              1967  305                 General
+## RA               1981   98               Insurance
+## AE               1958  146                 General
+## OEP              1949  271                 General
+## EDCC             1952  515             Development
+## JoBF             1977  172                 Finance
+## OBoES            1939  127                 General
+## JoEDC            1979   58                  Theory
+## SEJ              1932  524                 General
+## JoMS             1964  222      Management Science
+## JoBE             1981  385                Business
+## Dm               1964  413              Demography
+## EI               1962  366                 General
+## JoEBO            1980   75                  Theory
+## JoLS             1972  238       Law and Economics
+## JoDE             1974  142             Development
+## LanEc            1925  437      Urban and Regional
+## JoLE             1983  269                   Labor
+## JoEH             1941  643        Economic History
+## JoUE             1974  230      Urban and Regional
+## Ecnmc            1933  313                 General
+## JoMCB            1969  512          Macroeconomics
+## JoIntEc          1971  211           International
+## PC               1966  171          Public Finance
+## RP               1972   34                Business
+## EL               1978   81                 General
+## JoHeEc           1982  144                  Health
+## JBES             1983  190                Business
+## RJoE             1970  339 Industrial Organization
+## JoB              1928  771                Business
+## JoHR             1966  522                   Labor
+## IER              1960  284                 General
+## JoEEM            1974  202       Natural Resources
+## EER              1969  118                 General
+## WD               1973  160             Development
+## JoPubEc          1972  141          Public Finance
+## JEL              1963  972                 General
+## JoLaE            1968  542       Law and Economics
+## JEP              1987  866                 General
+## AJoAE            1918  267  Agricultural Economics
+## JoMonEc          1975  186          Macroeconomics
+## MngtSc           1954  558      Management Science
+## RoE&amp;S            1919  523                 General
+## RoES             1933  325                 General
+## JoE              1973  129            Econometrics
+## JoET             1969  165                  Theory
+## EJ               1890  531                 General
+## JoFE             1974  231                 Finance
+## JoCR             1974  536      Consumer Economics
+## JASA             1971  487            Econometrics
+## JoFi             1945  799                 Finance
+## QJoE             1886  660                 General
+## JoPolEc          1892  737                 General
+## Ecnmt            1932  346                 General
+## AER              1911 1098                 General</code></pre>
+</div>
+<div style="float: right; width: 45%;">
+<pre class="r"><code>as_tibble(Journals)</code></pre>
+<pre><code>## # A tibble: 180 x 10
+##    title publisher society price pages charpp citations foundingyear  subs field
+##    &lt;chr&gt; &lt;fct&gt;     &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;int&gt;     &lt;int&gt;        &lt;int&gt; &lt;int&gt; &lt;fct&gt;
+##  1 Asia~ Blackwell no        123   440   3822        21         1986    14 Gene~
+##  2 Sout~ So Afr e~ no         20   309   1782        22         1986    59 Econ~
+##  3 Comp~ Kluwer    no        443   567   2924        22         1987    17 Spec~
+##  4 MOCT~ Kluwer    no        276   520   3234        22         1991     2 Area~
+##  5 Jour~ Elsevier  no        295   791   3024        24         1972    96 Inte~
+##  6 Labo~ Elsevier  no        344   609   2967        24         1994    15 Labor
+##  7 Envi~ Cambridg~ no         90   602   3185        24         1995    14 Deve~
+##  8 Revi~ Elsevier  no        242   665   2688        27         1968   202 Spec~
+##  9 Econ~ Kluwer    no        226   243   3010        28         1987    46 Area~
+## 10 Metr~ Blackwell no        262   386   2501        30         1949    46 Gene~
+## # ... with 170 more rows</code></pre>
+</div>
+</div>
+<div id="logical-operators" class="section level2">
+<h2>Logical Operators</h2>
+<table class="table table-bordered" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Operator
+</th>
+<th style="text-align:left;">
+Interpretation
+</th>
+<th style="text-align:left;">
+Results
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="4">
+&amp;
+</td>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="4">
+AND (element-wise)
+</td>
+<td style="text-align:left;">
+TRUE &amp; TRUE = TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE &amp; FALSE = FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FALSE &amp; TRUE = FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FALSE &amp; FALSE = FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+&amp;&amp;
+</td>
+<td style="text-align:left;">
+AND (single comparison)
+</td>
+<td style="text-align:left;">
+same as above
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="4">
+|
+</td>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="4">
+OR (element-wise)
+</td>
+<td style="text-align:left;">
+TRUE | TRUE = TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRUE | FALSE is TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FALSE | TRUE is TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FALSE | FALSE is FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+||
+</td>
+<td style="text-align:left;">
+OR (single comparison)
+</td>
+<td style="text-align:left;">
+same as above
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="2">
+!
+</td>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="2">
+NOT
+</td>
+<td style="text-align:left;">
+!TRUE = FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+!FALSE = TRUE
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Some examples</p>
+<pre class="r"><code>a &lt;- c(T,F,T,F); a</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>b &lt;- c(F,T,T,T); b</code></pre>
+<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>a&amp;b; a&amp;&amp;b</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>a|b; a||b</code></pre>
+<pre><code>## [1] TRUE TRUE TRUE TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="tidyverse-reading-and-writing-data" class="section level1" data-background="workshop/tidyverse.PNG" data-background-size="auto" data-background-position="right">
+<h1><font color="black">Tidyverse | Reading and writing data </font></h1>
+<hr />
+<ul>
+<li>Create a csv file.</li>
+<li><code>readr::read_csv()</code>: Reading comma delimited files [Demo]</li>
+<li>The first line of the data is used as column names.</li>
+<li>Skip metadata using <code>skip = n</code> argument.</li>
+<li>For data <strong>without</strong> column names, use <code>col_names = FALSE</code> to label <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_n\)</span> sequentially.</li>
+<li>You could also use a defined column name with <code>col_names = c('x', 'y', 'z')</code>.</li>
+<li>Represent missing values with <code>na = "."</code> or <code>na = " "</code>.</li>
+</ul>
+<hr />
+<p>Reading other data formats</p>
+<ul>
+<li><code>readxl::read_xlsx()</code> to import .xls and .xlsx.</li>
+<li><code>haven::read_dta()</code> to import STATA files.</li>
+<li><code>haven::read_spss()</code> to import .sav SPSS files.</li>
+</ul>
+<p>Writing files</p>
+<ul>
+<li><code>readr::write_csv()</code></li>
+<li><code>readr::write_excel_csv()</code></li>
+<li><code>haven::write_dta()</code></li>
+</ul>
+</div>
+<div id="tidyverse-ggolot2" class="section level1" data-background="workshop/tidyverse.PNG" data-background-size="auto" data-background-position="right">
+<h1><font color="black">Tidyverse | <code>ggolot2</code> </font></h1>
+<div id="section-2" class="section level2 smaller">
+<h2></h2>
+<ul>
+<li>Install the packages <code>install.packages(c("ggplot2", "gapminder"), dependencies = TRUE)</code></li>
+<li>Load the packages:</li>
+</ul>
+<pre class="r"><code>library(gapminder); library(ggplot2)
+data(package = &#39;gapminder&#39;)
+data(&quot;gapminder&quot;)
+gapminder #panel data on life expectancy, population size, and GDP per capita for 142 countries since the 1950s.</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<ul>
+<li>Creating a ggplot</li>
+</ul>
+<pre class="r"><code>ggplot(data = gapminder)+ 
+  geom_point(mapping =  aes(x = gdpPercap, y = lifeExp))</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>ggplot(data = gapminder, aes(log(gdpPercap), log(lifeExp)))+ # Global aesthetic mapping
+  geom_point(mapping =  aes(col = continent, size = pop),
+             alpha = 0.2)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>ggplot(data = filter(gapminder, year == 2002), aes((gdpPercap), (lifeExp)))+ # Global aesthetic mapping
+  geom_point(aes(shape = continent),  alpha = 0.3)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+<div id="section-3" class="section level2 build">
+<h2></h2>
+<pre class="r"><code>ggplot(data = filter(gapminder, year == 2002), aes((gdpPercap), (lifeExp)))+ # Global aesthetic mapping
+  geom_point(aes(shape = continent),  alpha = 0.3)+
+  geom_text(aes(label =if_else(gdpPercap &gt; 30000 &amp; lifeExp &gt; 75, as.character(country), &quot;&quot;)))</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+</div>
+<div id="section-4" class="section level2 build">
+<h2></h2>
+<pre class="r"><code>library(ggrepel) # text labels repels away from each other
+ggplot(data = filter(gapminder, year == 2002), aes((gdpPercap), (lifeExp)))+ # Global aesthetic mapping
+  geom_point(aes(shape = continent),  alpha = 0.3)+
+  geom_text_repel(aes(label =if_else(gdpPercap &gt; 30000 &amp; lifeExp &gt; 75, as.character(country), &quot;&quot;)), max.overlaps = 35)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>library(ggrepel) # text labels repels away from each other
+ggplot(data = filter(gapminder, year == 2002), aes((gdpPercap), (lifeExp)))+ # Global aesthetic mapping
+  geom_point(aes(shape = continent),  alpha = 0.3)+
+  geom_label_repel(aes(label =if_else(gdpPercap &gt; 30000 &amp; lifeExp &gt; 75, as.character(country), &quot;&quot;)), max.overlaps = 35)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<hr />
+<p><code>nudge_x</code> and <code>nudge_y</code></p>
+<ul>
+<li>Use the <code>nudge_x</code> and the <code>nudge_y</code> arguments to repel better.</li>
+<li>Both the arguments use their respective units on the x-axis and the y-axis.</li>
+<li>Try the previous example with the values of
+<ul>
+<li><code>nudge_x =</code> -3000</li>
+<li><code>nudge_y =</code> -15</li>
+</ul></li>
+</ul>
+<hr />
+<pre class="r"><code>library(ggrepel) # text labels repels away from each other
+ggplot(data = filter(gapminder, year == 2002), aes((gdpPercap), (lifeExp)))+ # Global aesthetic mapping
+  geom_point(aes(shape = continent),  alpha = 0.3)+
+  geom_text_repel(aes(label =if_else(gdpPercap &gt; 40000 &amp; lifeExp &gt; 75, as.character(country), &quot;&quot;)), max.overlaps = 35, nudge_x = 0.1, nudge_y = 0.1)+
+  geom_point(aes(x = filter(gapminder, year == 2002, gdpPercap &gt; 40000 &amp; lifeExp &gt; 75)$gdpPercap,y = filter(gapminder, year == 2002, gdpPercap &gt; 40000 &amp;lifeExp &gt; 75)$lifeExp), col = &quot;red&quot;)+
+  geom_label_repel(aes(label =if_else(country == &quot;India&quot;, as.character(country), &quot;&quot;)), max.overlaps = 35, nudge_x = 0.1, nudge_y = 0.1)+
+  geom_point(aes(x = filter(gapminder, year == 2002, country == &quot;India&quot;)$gdpPercap,y = filter(gapminder, year == 2002, country == &quot;India&quot;)$lifeExp), col = &quot;red&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<hr />
+<p>Facets (wrap)</p>
+<pre class="r"><code>ggplot(gapminder) +
+  geom_point(aes(log(gdpPercap), log(lifeExp)), alpha = 0.3)+
+  facet_wrap(~ continent)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<hr />
+<p>Facets (grid)</p>
+<pre class="r"><code>ggplot(gapminder) +
+  geom_point(aes(log(gdpPercap), log(lifeExp)), alpha = 0.3)+
+  facet_grid(. ~ continent)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>ggplot(gapminder) +
+  geom_point(aes(log(gdpPercap), log(lifeExp)), alpha = 0.3)+
+  facet_grid(year ~ continent)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>ggplot(gapminder) +
+  geom_point(aes(log(gdpPercap), log(lifeExp)), alpha = 0.3)+
+  facet_grid(. ~ year)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+</div>
+<div id="section-5" class="section level2 smaller">
+<h2></h2>
+<pre class="r"><code>ggplot(filter(gapminder))+
+  geom_bar(aes(continent), stat = &quot;count&quot;) # the bars</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>(Population &lt;- filter(gapminder, year == 2007) %&gt;% 
+  group_by(continent) %&gt;% 
+  summarise(popu = round(sum(pop/1000000000),2)))</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   continent  popu
+##   &lt;fct&gt;     &lt;dbl&gt;
+## 1 Africa     0.93
+## 2 Americas   0.9 
+## 3 Asia       3.81
+## 4 Europe     0.59
+## 5 Oceania    0.02</code></pre>
+<hr />
+<pre class="r"><code>Population %&gt;% 
+ggplot(aes(continent, popu))+
+  geom_bar( stat = &quot;identity&quot;) # the bars are the population figures w.r.t the continents</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code># reorder() from base package
+Population %&gt;% 
+ggplot(aes(reorder(continent, popu), popu))+
+  geom_bar(stat = &quot;identity&quot;) +
+  labs(x = &quot;Continent&quot;,
+       y = &quot;Population (in billions)&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code># reorder() from base package
+Population %&gt;% 
+ggplot(aes(reorder(continent, -popu), popu))+
+  geom_bar(stat = &quot;identity&quot;) +
+  labs(x = &quot;Continent&quot;,
+       y = &quot;Population (in billions)&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code> Population %&gt;% 
+   ggplot(aes(reorder(continent, popu), popu))+
+   geom_bar(stat = &quot;identity&quot;)+
+   geom_text(aes(label = popu))+
+   expand_limits(y = c(0, 4.5)) +
+   labs(x = &quot;Continent&quot;, y = &quot;Population (in billions)&quot;,
+        title = &quot;Population for 2007&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code> Population %&gt;% 
+   ggplot(aes(reorder(continent, popu), popu))+
+   geom_bar(stat = &quot;identity&quot;)+
+   geom_text(aes(label = popu),
+                   vjust = - 0.5)+
+   expand_limits(y = c(0, 4.5)) +
+   labs(x = &quot;Continent&quot;, y = &quot;Population (in billions)&quot;,
+        title = &quot;Population for 2007&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<hr />
+<pre class="r"><code>(Population_prop &lt;- Population %&gt;% 
+   mutate(propo = round(popu/sum(popu),3)))</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   continent  popu propo
+##   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 Africa     0.93 0.149
+## 2 Americas   0.9  0.144
+## 3 Asia       3.81 0.61 
+## 4 Europe     0.59 0.094
+## 5 Oceania    0.02 0.003</code></pre>
+<hr />
+<pre class="r"><code> Population_prop %&gt;% 
+   ggplot(aes(reorder(continent, propo),propo))+
+  geom_bar(stat = &quot;identity&quot;)+
+  expand_limits(y = c(0,0.75))+
+  geom_text(aes(label = propo), vjust = -0.5)+
+   labs(x = &quot;Continent&quot;, y = &quot;Population (in %)&quot;,
+        title = &quot;Population for 2007&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<hr />
+<p>We will do more plots later!</p>
+</div>
+</div>
+<div id="tidyverse-data-transformation" class="section level1" data-background="workshop/tidyverse.PNG" data-background-size="auto" data-background-position="right">
+<h1><font color="black">Tidyverse | Data transformation </font></h1>
+<hr />
+<p><strong>Packages and Data</strong></p>
+<ul>
+<li><code>dplyr</code> package
+<ul>
+<li><code>filter()</code>, <code>arrange()</code>, <code>select()</code>, <code>mutate()</code>, <code>summarise()</code> functions/verbs.</li>
+</ul></li>
+<li><code>library(tidyverse)</code></li>
+<li><code>gapminder</code> data set</li>
+</ul>
+<hr />
+<pre class="r"><code>library(gapminder)
+data(gapminder)
+gapminder</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<p><strong>Filter rows with <code>filter()</code></strong></p>
+<ul>
+<li>Filter all the countries in Asia for 1952.</li>
+</ul>
+<p><em>Note that <code>==</code> is used for comparison and <code>=</code> for assignment.</em></p>
+<pre class="r"><code>filter(gapminder, continent == &quot;Asia&quot;, year == 1952)</code></pre>
+<pre><code>## # A tibble: 33 x 6
+##    country          continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan      Asia       1952    28.8   8425333      779.
+##  2 Bahrain          Asia       1952    50.9    120447     9867.
+##  3 Bangladesh       Asia       1952    37.5  46886859      684.
+##  4 Cambodia         Asia       1952    39.4   4693836      368.
+##  5 China            Asia       1952    44   556263527      400.
+##  6 Hong Kong, China Asia       1952    61.0   2125900     3054.
+##  7 India            Asia       1952    37.4 372000000      547.
+##  8 Indonesia        Asia       1952    37.5  82052000      750.
+##  9 Iran             Asia       1952    44.9  17272000     3035.
+## 10 Iraq             Asia       1952    45.3   5441766     4130.
+## # ... with 23 more rows</code></pre>
+<hr />
+<ul>
+<li>Find all the countries in Asia or Africa.</li>
+</ul>
+<pre class="r"><code>## filter(gapminder, continent == &quot;Asia&quot; | continent == &quot;Africa&quot;)
+# or
+filter(gapminder, continent %in% c(&quot;Asia&quot;, &quot;Africa&quot;))</code></pre>
+<pre><code>## # A tibble: 1,020 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # ... with 1,010 more rows</code></pre>
+<ul>
+<li><code>%in%</code> is used to see whether an object is contained within (i.e. matches one of) a list of items.</li>
+</ul>
+<hr />
+<p>Find all the countries with per capita GDP between <span class="math inline">\(\$500\)</span> and <span class="math inline">\(\$1000\)</span>.</p>
+<pre class="r"><code>filter(gapminder, gdpPercap &gt;= 500 &amp; gdpPercap &lt;= 1000 )</code></pre>
+<pre><code>## # A tibble: 288 x 6
+##    country     continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # ... with 278 more rows</code></pre>
+<hr />
+<p><strong>Arrange rows with <code>arrange()</code></strong></p>
+<ul>
+<li>Sorts a variable in ascending or descending order.</li>
+</ul>
+<pre class="r"><code>arrange(gapminder, lifeExp)</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country      continent  year lifeExp     pop gdpPercap
+##    &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+##  1 Rwanda       Africa     1992    23.6 7290203      737.
+##  2 Afghanistan  Asia       1952    28.8 8425333      779.
+##  3 Gambia       Africa     1952    30    284320      485.
+##  4 Angola       Africa     1952    30.0 4232095     3521.
+##  5 Sierra Leone Africa     1952    30.3 2143249      880.
+##  6 Afghanistan  Asia       1957    30.3 9240934      821.
+##  7 Cambodia     Asia       1977    31.2 6978607      525.
+##  8 Mozambique   Africa     1952    31.3 6446316      469.
+##  9 Sierra Leone Africa     1957    31.6 2295678     1004.
+## 10 Burkina Faso Africa     1952    32.0 4469979      543.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<pre class="r"><code>arrange(gapminder, desc(lifeExp))</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country          continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Japan            Asia       2007    82.6 127467972    31656.
+##  2 Hong Kong, China Asia       2007    82.2   6980412    39725.
+##  3 Japan            Asia       2002    82   127065841    28605.
+##  4 Iceland          Europe     2007    81.8    301931    36181.
+##  5 Switzerland      Europe     2007    81.7   7554661    37506.
+##  6 Hong Kong, China Asia       2002    81.5   6762476    30209.
+##  7 Australia        Oceania    2007    81.2  20434176    34435.
+##  8 Spain            Europe     2007    80.9  40448191    28821.
+##  9 Sweden           Europe     2007    80.9   9031088    33860.
+## 10 Israel           Asia       2007    80.7   6426679    25523.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<p><strong>Select columns with <code>select()</code></strong></p>
+<ul>
+<li>Select columns by name</li>
+</ul>
+<pre class="r"><code>select(gapminder, year, pop, gdpPercap)</code></pre>
+<pre><code>## # A tibble: 1,704 x 3
+##     year      pop gdpPercap
+##    &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1  1952  8425333      779.
+##  2  1957  9240934      821.
+##  3  1962 10267083      853.
+##  4  1967 11537966      836.
+##  5  1972 13079460      740.
+##  6  1977 14880372      786.
+##  7  1982 12881816      978.
+##  8  1987 13867957      852.
+##  9  1992 16317921      649.
+## 10  1997 22227415      635.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<ul>
+<li><code>select(gapminder, year:gdpPercap)</code></li>
+<li><code>select(gapminder, -(year:gdpPercap))</code></li>
+<li><code>select(gapminder, starts_with("c"))</code></li>
+<li><code>select(gapminder, ends_with("p"))</code></li>
+<li><code>select(gapminder, contains("life"))</code></li>
+</ul>
+<hr />
+<p><code>rename()</code> is a variant of <code>select()</code> that keeps all the variables that aren’t explicitly mentioned.</p>
+<pre class="r"><code>rename(gapminder, perCapInc = gdpPercap)</code></pre>
+<pre><code>## # A tibble: 1,704 x 6
+##    country     continent  year lifeExp      pop perCapInc
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.
+##  6 Afghanistan Asia       1977    38.4 14880372      786.
+##  7 Afghanistan Asia       1982    39.9 12881816      978.
+##  8 Afghanistan Asia       1987    40.8 13867957      852.
+##  9 Afghanistan Asia       1992    41.7 16317921      649.
+## 10 Afghanistan Asia       1997    41.8 22227415      635.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<p><strong>Add new variables with <code>mutate()</code></strong></p>
+<pre class="r"><code>mutate(gapminder, gdp = gdpPercap*pop)</code></pre>
+<pre><code>## # A tibble: 1,704 x 7
+##    country     continent  year lifeExp      pop gdpPercap          gdp
+##    &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan Asia       1952    28.8  8425333      779.  6567086330.
+##  2 Afghanistan Asia       1957    30.3  9240934      821.  7585448670.
+##  3 Afghanistan Asia       1962    32.0 10267083      853.  8758855797.
+##  4 Afghanistan Asia       1967    34.0 11537966      836.  9648014150.
+##  5 Afghanistan Asia       1972    36.1 13079460      740.  9678553274.
+##  6 Afghanistan Asia       1977    38.4 14880372      786. 11697659231.
+##  7 Afghanistan Asia       1982    39.9 12881816      978. 12598563401.
+##  8 Afghanistan Asia       1987    40.8 13867957      852. 11820990309.
+##  9 Afghanistan Asia       1992    41.7 16317921      649. 10595901589.
+## 10 Afghanistan Asia       1997    41.8 22227415      635. 14121995875.
+## # ... with 1,694 more rows</code></pre>
+<hr />
+<p>Keep only required columns/variables with <code>transmute()</code>.</p>
+<pre class="r"><code>transmute(gapminder, gdp = gdpPercap*pop)</code></pre>
+<pre><code>## # A tibble: 1,704 x 1
+##             gdp
+##           &lt;dbl&gt;
+##  1  6567086330.
+##  2  7585448670.
+##  3  8758855797.
+##  4  9648014150.
+##  5  9678553274.
+##  6 11697659231.
+##  7 12598563401.
+##  8 11820990309.
+##  9 10595901589.
+## 10 14121995875.
+## # ... with 1,694 more rows</code></pre>
+<div id="section-6" class="section level2 smaller">
+<h2></h2>
+<p><strong>Combining multiple operations with the <code>%&gt;%</code></strong></p>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country == &quot;India&quot;)</code></pre>
+<pre><code>## # A tibble: 12 x 6
+##    country continent  year lifeExp        pop gdpPercap
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;
+##  1 India   Asia       1952    37.4  372000000      547.
+##  2 India   Asia       1957    40.2  409000000      590.
+##  3 India   Asia       1962    43.6  454000000      658.
+##  4 India   Asia       1967    47.2  506000000      701.
+##  5 India   Asia       1972    50.7  567000000      724.
+##  6 India   Asia       1977    54.2  634000000      813.
+##  7 India   Asia       1982    56.6  708000000      856.
+##  8 India   Asia       1987    58.6  788000000      977.
+##  9 India   Asia       1992    60.2  872000000     1164.
+## 10 India   Asia       1997    61.8  959000000     1459.
+## 11 India   Asia       2002    62.9 1034172547     1747.
+## 12 India   Asia       2007    64.7 1110396331     2452.</code></pre>
+<p>Behind the scenes, <code>x %&gt;% f(y)</code> turns into <code>f(x, y)</code>, and <code>x %&gt;% f(y) %&gt;% g(z)</code> turns into <code>g(f(x, y), z)</code> and so on.</p>
+<hr />
+<p><strong>Grouped summaries with <code>summarise()</code></strong></p>
+<ul>
+<li>Find the mean life expectancy for India during 1952-2007.</li>
+</ul>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country == &quot;India&quot;) %&gt;% 
+  summarise(mean_lifeExp = mean(lifeExp))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##   mean_lifeExp
+##          &lt;dbl&gt;
+## 1         53.2</code></pre>
+<hr />
+<ul>
+<li>Compare the mean life expectancy of India and China during 1952-2007.</li>
+</ul>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(country %in% c(&quot;India&quot;, &quot;China&quot;)) %&gt;% 
+  group_by(country) %&gt;% 
+  summarise(mean_lifeExp = mean(lifeExp))</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   country mean_lifeExp
+##   &lt;fct&gt;          &lt;dbl&gt;
+## 1 China           61.8
+## 2 India           53.2</code></pre>
+<hr />
+<p><strong>Some useful summary functions</strong></p>
+<ul>
+<li>Measures of location: <code>mean(x)</code>, <code>median(x)</code></li>
+<li>Measures of spread: <code>sd(x)</code>, <code>IQR(x)</code>, <code>mad(x)</code></li>
+<li>Measures of rank: <code>min(x)</code>, <code>quantile(x, 0.25)</code>, <code>max(x)</code></li>
+<li>Measures of position: <code>first(x)</code>, <code>nth(x)</code>, <code>last(x)</code></li>
+<li>Count: <code>n(x)</code></li>
+</ul>
+</div>
+</div>
+<div id="tidyverse-tidy-data" class="section level1" data-background="workshop/tidyverse.PNG" data-background-size="auto" data-background-position="right">
+<h1><font color="black">Tidyverse | Tidy data </font></h1>
+<div id="section-7" class="section level2 smaller">
+<h2></h2>
+<ul>
+<li>Compute <span class="math inline">\(rate = (cases / population)*100\)</span> separately for <code>table1</code>, <code>table2</code>, <code>table3</code>, <code>table4a</code> and <code>table4b</code></li>
+</ul>
+<div style="float: left; width: 45%;">
+<p><img src="workshop/table1.PNG" />
+<img src="workshop/table2.PNG" /></p>
+</div>
+<div style="float: right; width: 45%;">
+<p><img src="workshop/table3.PNG" />
+<img src="workshop/table4.PNG" /></p>
+</div>
+<hr />
+<p><strong>Pivot Longer</strong></p>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/3aea19108d39606bbe49981acda07696c0c7fcd8/2de65/images/tidy-9.png" width="100%" /></p>
+<pre class="r"><code>table4a %&gt;% 
+  pivot_longer(c(`1999`, `2000`), names_to = &quot;year&quot;, values_to = &quot;cases&quot;)</code></pre>
+<hr />
+<p><strong>Pivot wider</strong></p>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/8350f0dda414629b9d6c354f87acf5c5f722be43/bcb84/images/tidy-8.png" width="80%" /></p>
+<pre class="r"><code>table2 %&gt;% 
+  pivot_wider(names_from = type, values_from = count)</code></pre>
+</div>
+<div id="section-8" class="section level2 smaller">
+<h2></h2>
+<p><strong>Separating</strong></p>
+<p><img src="https://d33wubrfki0l68.cloudfront.net/f6fca537e77896868fedcd85d9d01031930d76c9/637d9/images/tidy-17.png" width="80%" /></p>
+<pre class="r"><code>table3 %&gt;% 
+  separate(col = rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;)</code></pre>
+</div>
+<div id="section-9" class="section level2 smaller">
+<h2></h2>
+<pre class="r"><code>table3 %&gt;% 
+  separate(col = rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year cases  population
+##   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;     
+## 1 Afghanistan  1999 745    19987071  
+## 2 Afghanistan  2000 2666   20595360  
+## 3 Brazil       1999 37737  172006362 
+## 4 Brazil       2000 80488  174504898 
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<pre class="r"><code>table3 %&gt;% 
+  separate(col = rate, into = c(&quot;cases&quot;, &quot;population&quot;), sep = &quot;/&quot;, convert = TRUE)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+<div id="tidy-nsso-data" class="section level1">
+<h1>Tidy NSSO data</h1>
+<div id="understanding-the-data" class="section level2">
+<h2>Understanding the data</h2>
+<ul>
+<li>Unit Level Data of Periodic Labour Force Survey (PLFS), <a href="http://mospi.nic.in/unit-level-data-periodic-labour-force-survey-plfs-july-2019-june-2020">July 2019-June 2020</a>.</li>
+<li>Step 1: Read the layout.
+<ul>
+<li>PLFS Person Level Data of Re-Visit Schedule</li>
+<li>File: File: PER_RV.txt (PERSON LEVEL) RECORD LENGTH: 275+1</li>
+</ul></li>
+<li>Step 2: Read the raw data.</li>
+<li>Step 3: Tidy the raw data.</li>
+</ul>
+<hr />
+<pre class="r"><code># read the layout
+(`layout19-20` &lt;- read_csv(&quot;C:/Users/Pravesh/Documents/blogdown/rworkshop/working/workshop/layout19-20.csv&quot;, skip = 171, n_max = 104) %&gt;% 
+  select(`Full Name`, `Item /Col.`,`Field Length`, `Byte Position`, X7) %&gt;% 
+   mutate(Name = paste(`Full Name`, `Item /Col.`, sep = &#39;&#39;)) %&gt;%  
+  rename(Length = `Field Length`,
+         Position1 = `Byte Position`,
+         Position2 = X7))</code></pre>
+<pre><code>## # A tibble: 104 x 6
+##    `Full Name`        `Item /Col.` Length Position1 Position2 Name              
+##    &lt;chr&gt;              &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;             
+##  1 File Identificati~ NA                4         1         4 File Identificati~
+##  2 Schdule            2                 3         5         7 Schdule2          
+##  3 Quarter            NA                2         8         9 QuarterNA         
+##  4 Visit              NA                2        10        11 VisitNA           
+##  5 Sector             3                 1        12        12 Sector3           
+##  6 State/Ut Code      NA                2        13        14 State/Ut CodeNA   
+##  7 District Code      4                 2        15        16 District Code4    
+##  8 NSS-Region         4                 3        17        19 NSS-Region4       
+##  9 Stratum            5                 2        20        21 Stratum5          
+## 10 Sub-Stratum        6                 2        22        23 Sub-Stratum6      
+## # ... with 94 more rows</code></pre>
+<hr />
+<pre class="r"><code>## read the raw data 
+`perrv_19-20` &lt;- read_csv(&quot;http://mospi.nic.in/sites/default/files/reports_and_publication/PLFS_2019_2020/PERRV.TXT&quot;, col_names = &quot;raw&quot;) 
+
+
+## tidy data
+(`tidy_perrv_19-20` &lt;- `perrv_19-20` %&gt;% 
+  separate(col = raw, into = `layout19-20`$Name,
+           sep = cumsum(as.numeric(`layout19-20`$Length)),
+           convert = TRUE))</code></pre>
+<pre><code>## # A tibble: 523,163 x 104
+##    `File Identific~ Schdule2 QuarterNA VisitNA Sector3 `State/Ut CodeN~
+##    &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;int&gt;            &lt;int&gt;
+##  1 RVP3                  104 Q1        V2            2               33
+##  2 RVP3                  104 Q1        V2            2               33
+##  3 RVP3                  104 Q1        V2            2               33
+##  4 RVP3                  104 Q1        V2            2               33
+##  5 RVP3                  104 Q1        V2            2               33
+##  6 RVP3                  104 Q1        V2            2               33
+##  7 RVP3                  104 Q1        V2            2               33
+##  8 RVP3                  104 Q1        V2            2               33
+##  9 RVP3                  104 Q1        V2            2               33
+## 10 RVP3                  104 Q1        V2            2               33
+## # ... with 523,153 more rows, and 98 more variables: `District Code4` &lt;int&gt;,
+## #   `NSS-Region4` &lt;int&gt;, Stratum5 &lt;int&gt;, `Sub-Stratum6` &lt;int&gt;,
+## #   `Sub-Sample11` &lt;int&gt;, `Fod Sub-Region12` &lt;chr&gt;, FSU1 &lt;int&gt;, `Sample Sg/Sb
+## #   No.13` &lt;int&gt;, `Second Stage Stratum No.14` &lt;int&gt;, `Sample Household
+## #   Number15` &lt;int&gt;, `Person Serial No.1` &lt;int&gt;, `Relationship To Head4` &lt;int&gt;,
+## #   Sex5 &lt;int&gt;, Age6 &lt;int&gt;, `Marital Status7` &lt;int&gt;, `General Educaion
+## #   Level8` &lt;int&gt;, `Technical Educaion Level9` &lt;int&gt;, `No. of years in Formal
+## #   Education10` &lt;int&gt;, `Status of Current Attendance in Educational
+## #   Institution11` &lt;int&gt;, `Status Code for activity 14/3.1` &lt;int&gt;, `Industry
+## #   Code (NIC) for activity 15/3.1` &lt;int&gt;, `hours actuallly worked for activity
+## #   1 on 7 th day6/3.1` &lt;int&gt;, `wage earning for activity 1 on 7 th
+## #   day9/3.1` &lt;int&gt;, `Status Code for activity 24/3.1` &lt;int&gt;, `Industry Code
+## #   (NIC) for activity 25/3.1` &lt;int&gt;, `hours actuallly worked for activity 2 on
+## #   7 th day6/3.1` &lt;int&gt;, `wage earning for activity 2 on 7 th day9/3.1` &lt;int&gt;,
+## #   `total hours actually worked on 7th day7/3.1` &lt;int&gt;, `hours available for
+## #   aditional worked on 7th day8/3.1` &lt;int&gt;, `Status Code for activity
+## #   14/3.2` &lt;int&gt;, `Industry Code (NIC) for activity 15/3.2` &lt;int&gt;, `hours
+## #   actuallly worked for activity 1 on 6 th day6/3.2` &lt;int&gt;, `wage earning for
+## #   activity 1 on 7 th day9/3.2` &lt;int&gt;, `Status Code for activity
+## #   24/3.2` &lt;int&gt;, `Industry Code (NIC) for activity 25/3.2` &lt;int&gt;, `hours
+## #   actuallly worked for activity 2 on 6 th day6/3.2` &lt;int&gt;, `wage earning for
+## #   activity 2 on 6 th day9/3.2` &lt;int&gt;, `total hours actually worked on 6th
+## #   day7/3.2` &lt;int&gt;, `hours available for aditional worked on 6th
+## #   day8/3.2` &lt;int&gt;, `Status Code for activity 14/3.3` &lt;int&gt;, `Industry Code
+## #   (NIC) for activity 15/3.3` &lt;int&gt;, `hours actuallly worked for activity 1
+## #   on5 th day6/3.3` &lt;int&gt;, `wage earning for activity 1 on 5 th
+## #   day9/3.3` &lt;int&gt;, `Status Code for activity 24/3.3` &lt;int&gt;, `Industry Code
+## #   (NIC) for activity 25/3.3` &lt;int&gt;, `hours actuallly worked for activity 2 on
+## #   5 th day6/3.3` &lt;int&gt;, `wage earning for activity 2 on 5 th day9/3.3` &lt;int&gt;,
+## #   `total hours actually worked on 5th day7/3.3` &lt;int&gt;, `hours available for
+## #   aditional worked on 5th day8/3.3` &lt;int&gt;, `Status Code for activity
+## #   14/3.4` &lt;int&gt;, `Industry Code (NIC) for activity 15/3.4` &lt;int&gt;, `hours
+## #   actuallly worked for activity 1 on 4th day6/3.4` &lt;int&gt;, `wage earning for
+## #   activity 1 on 4th day9/3.4` &lt;int&gt;, `Status Code for activity 24/3.4` &lt;int&gt;,
+## #   `Industry Code (NIC) for activity 25/3.4` &lt;int&gt;, `hours actuallly worked
+## #   for activity 2 on 4th day6/3.4` &lt;int&gt;, `wage earning for activity 2 on 4th
+## #   day9/3.4` &lt;int&gt;, `total hours actually worked on 4th day7/3.4` &lt;int&gt;,
+## #   `hours available for aditional worked on 4th day8/3.4` &lt;int&gt;, `Status Code
+## #   for activity 14/3.5` &lt;int&gt;, `Industry Code (NIC) for activity
+## #   15/3.5` &lt;int&gt;, `hours actuallly worked for activity 1 on 3rd
+## #   day6/3.5` &lt;int&gt;, `wage earning for activity 1 on 3rd day9/3.5` &lt;int&gt;,
+## #   `Status Code for activity 24/3.5` &lt;int&gt;, `Industry Code (NIC) for activity
+## #   25/3.5` &lt;int&gt;, `hours actuallly worked for activity 2 on 3rd
+## #   day6/3.5` &lt;int&gt;, `wage earning for activity 2 on 3 rd day9/3.5` &lt;int&gt;,
+## #   `total hours actually worked on 3rd day7/3.5` &lt;int&gt;, `hours available for
+## #   aditional worked on 3rd day8/3.5` &lt;int&gt;, `Status Code for activity
+## #   14/3.6` &lt;int&gt;, `Industry Code (NIC) for activity 15/3.6` &lt;int&gt;, `hours
+## #   actuallly worked for activity 1 on 2nd day6/3.6` &lt;int&gt;, `wage earning for
+## #   activity 1 on 2nd day9/3.6` &lt;int&gt;, `Status Code for activity 24/3.6` &lt;int&gt;,
+## #   `Industry Code (NIC) for activity 25/3.6` &lt;int&gt;, `hours actuallly worked
+## #   for activity 2 on 2nd day6/3.6` &lt;int&gt;, `wage earning for activity 2 on 2nd
+## #   day9/3.6` &lt;int&gt;, `total hours actually worked on 2nd day7/3.6` &lt;int&gt;,
+## #   `hours available for aditional worked on 2nd day8/3.6` &lt;int&gt;, `Status Code
+## #   for activity 14/3.7` &lt;int&gt;, `Industry Code (NIC) for activity
+## #   15/3.7` &lt;int&gt;, `hours actuallly worked for activity 1 on 1st
+## #   day6/3.7` &lt;int&gt;, `wage earning for activity 1 on 1st day9/3.7` &lt;int&gt;,
+## #   `Status Code for activity 24/3.7` &lt;int&gt;, `Industry Code (NIC) for activity
+## #   25/3.7` &lt;int&gt;, `hours actuallly worked for activity 2 on 1st
+## #   day6/3.7` &lt;int&gt;, `wage earning for activity 2 on 1st day9/3.7` &lt;int&gt;,
+## #   `total hours actually worked on 1st day7/3.7` &lt;int&gt;, `hours available for
+## #   aditional worked on 1st day8/3.7` &lt;int&gt;, `Current Weekly Status
+## #   (CWS)5` &lt;int&gt;, `Industry Code (CWS)6` &lt;int&gt;, `Occupation Code
+## #   (CWS)7` &lt;chr&gt;, `Earnings For Regular Salarid/Wage Activity9` &lt;int&gt;,
+## #   `Earnings For Regular Salarid/Wage Activity10` &lt;int&gt;, `Ns count for sector
+## #   x stratum x substratum x sub-sampleNA` &lt;int&gt;, `Ns count for sector x
+## #   stratum x substratumNA` &lt;int&gt;, `Sub-sample wise MultiplierNA` &lt;int&gt;,
+## #   `Occurance of State x Sector x Stratum x SubStratum in that Quarter
+## #   including earlier visitsNA` &lt;int&gt;</code></pre>
+</div>
+</div>
+<div id="simple-linear-regression" class="section level1">
+<h1>Simple Linear Regression</h1>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<pre class="r"><code>library(AER)
+library(tidyverse)
+data(Journals, package = &quot;AER&quot;)
+journals &lt;- Journals %&gt;% 
+  mutate(citeprice = price/citations) %&gt;% 
+  select(subs, price, citeprice)
+glimpse(journals)</code></pre>
+<pre><code>## Rows: 180
+## Columns: 3
+## $ subs      &lt;int&gt; 14, 59, 17, 2, 96, 15, 14, 202, 46, 46, 57, 125, 30, 62, 16,~
+## $ price     &lt;int&gt; 123, 20, 443, 276, 295, 344, 90, 242, 226, 262, 279, 165, 24~
+## $ citeprice &lt;dbl&gt; 5.8571, 0.9091, 20.1364, 12.5455, 12.2917, 14.3333, 3.7500, ~</code></pre>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<pre class="r"><code>library(summarytools)
+dfSummary(journals, graph.col = FALSE ) </code></pre>
+<pre><code>## Data Frame Summary  
+## journals  
+## Dimensions: 180 x 3  
+## Duplicates: 0  
+## 
+## -----------------------------------------------------------------------------------------
+## No   Variable     Stats / Values               Freqs (% of Valid)    Valid      Missing  
+## ---- ------------ ---------------------------- --------------------- ---------- ---------
+## 1    subs         Mean (sd) : 196.9 (204.5)    141 distinct values   180        0        
+##      [integer]    min &lt; med &lt; max:                                   (100.0%)   (0.0%)   
+##                   2 &lt; 122.5 &lt; 1098                                                       
+##                   IQR (CV) : 216.2 (1)                                                   
+## 
+## 2    price        Mean (sd) : 417.7 (385.8)    147 distinct values   180        0        
+##      [integer]    min &lt; med &lt; max:                                   (100.0%)   (0.0%)   
+##                   20 &lt; 282 &lt; 2120                                                        
+##                   IQR (CV) : 406.2 (0.9)                                                 
+## 
+## 3    citeprice    Mean (sd) : 2.5 (3.5)        180 distinct values   180        0        
+##      [numeric]    min &lt; med &lt; max:                                   (100.0%)   (0.0%)   
+##                   0 &lt; 1.3 &lt; 24.5                                                         
+##                   IQR (CV) : 3 (1.4)                                                     
+## -----------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="regression-model" class="section level2">
+<h2>Regression model</h2>
+<ul>
+<li>Estimate the effect of price per citation <span class="math inline">\(citeprice\)</span> on the number of subscriptions <span class="math inline">\(subs\)</span>.</li>
+<li>Fit the following linear regression model
+<span class="math display">\[
+\log(subs)_i = \beta_1 + \beta_2\log(citeprice)_i+ \epsilon_i
+\]</span></li>
+</ul>
+</div>
+<div id="plot" class="section level2 smaller">
+<h2>Plot</h2>
+<pre class="r"><code>library(ggplot2)
+ggplot(data = journals, aes(log(subs), log(citeprice)))+
+  geom_point() +
+  geom_smooth(formula = y ~ x, method = &quot;lm&quot;, se = FALSE) </code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="regression-summary" class="section level2">
+<h2>Regression summary</h2>
+<pre class="r"><code>jour_lm &lt;- lm(log(subs) ~ log(citeprice), data = journals)
+summary(jour_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(subs) ~ log(citeprice), data = journals)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.7248 -0.5361  0.0372  0.4662  1.8481 
+## 
+## Coefficients:
+##                Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      4.7662     0.0559    85.2 &lt;0.0000000000000002 ***
+## log(citeprice)  -0.5331     0.0356   -15.0 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.75 on 178 degrees of freedom
+## Multiple R-squared:  0.557,  Adjusted R-squared:  0.555 
+## F-statistic:  224 on 1 and 178 DF,  p-value: &lt;0.0000000000000002</code></pre>
+</div>
+<div id="lm-object" class="section level2">
+<h2><code>lm</code> object</h2>
+<pre class="r"><code>class(jour_lm)</code></pre>
+<pre><code>## [1] &quot;lm&quot;</code></pre>
+<pre class="r"><code>names(jour_lm)</code></pre>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
+<pre class="r"><code>jour_lm$coefficients</code></pre>
+<pre><code>##    (Intercept) log(citeprice) 
+##         4.7662        -0.5331</code></pre>
+</div>
+<div id="analysis-of-variance" class="section level2">
+<h2>Analysis of variance</h2>
+<pre class="r"><code>anova(jour_lm)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: log(subs)
+##                 Df Sum Sq Mean Sq F value              Pr(&gt;F)    
+## log(citeprice)   1    126   125.9     224 &lt;0.0000000000000002 ***
+## Residuals      178    100     0.6                                
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="point-and-interval-estimates" class="section level2">
+<h2>Point and interval estimates</h2>
+<pre class="r"><code># extract the estimated regression coefficients
+coef(jour_lm)</code></pre>
+<pre><code>##    (Intercept) log(citeprice) 
+##         4.7662        -0.5331</code></pre>
+<pre class="r"><code># calculate the confidence intervals
+confint(jour_lm, level = 0.95)</code></pre>
+<pre><code>##                  2.5 %  97.5 %
+## (Intercept)     4.6559  4.8765
+## log(citeprice) -0.6033 -0.4628</code></pre>
+</div>
+<div id="testing-a-linear-hypothesis" class="section level2 smaller">
+<h2>Testing a linear hypothesis</h2>
+<ul>
+<li>Example: Test the hypothesis that the elasticity of number of subscriptions with respect to the price per citation equals <span class="math inline">\(-0.5\)</span>, i.e. <span class="math inline">\(H_0:\beta_2=-0.5\)</span>.</li>
+</ul>
+<pre class="r"><code>library(car) # loads with AER
+linearHypothesis(jour_lm, &quot;log(citeprice) = -0.5&quot;)</code></pre>
+<pre><code>## Linear hypothesis test
+## 
+## Hypothesis:
+## log(citeprice) = - 0.5
+## 
+## Model 1: restricted model
+## Model 2: log(subs) ~ log(citeprice)
+## 
+##   Res.Df RSS Df Sum of Sq    F Pr(&gt;F)
+## 1    179 100                         
+## 2    178 100  1     0.484 0.86   0.35</code></pre>
+<ul>
+<li>Cannot reject <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+</div>
+</div>
+<div id="multiple-linear-regression" class="section level1">
+<h1>Multiple Linear Regression</h1>
+<div id="data-1" class="section level2">
+<h2>Data</h2>
+<pre class="r"><code>data(CPS1988, package = &quot;AER&quot;)
+# ?CPS1988
+# summary(CPS1988)
+dfSummary(CPS1988, graph.col = FALSE)</code></pre>
+<pre><code>## Data Frame Summary  
+## CPS1988  
+## Dimensions: 28155 x 7  
+## Duplicates: 2128  
+## 
+## -------------------------------------------------------------------------------------------
+## No   Variable      Stats / Values               Freqs (% of Valid)     Valid      Missing  
+## ---- ------------- ---------------------------- ---------------------- ---------- ---------
+## 1    wage          Mean (sd) : 603.7 (453.5)    5970 distinct values   28155      0        
+##      [numeric]     min &lt; med &lt; max:                                    (100.0%)   (0.0%)   
+##                    50 &lt; 522.3 &lt; 18777                                                      
+##                    IQR (CV) : 474.8 (0.8)                                                  
+## 
+## 2    education     Mean (sd) : 13.1 (2.9)       19 distinct values     28155      0        
+##      [integer]     min &lt; med &lt; max:                                    (100.0%)   (0.0%)   
+##                    0 &lt; 12 &lt; 18                                                             
+##                    IQR (CV) : 3 (0.2)                                                      
+## 
+## 3    experience    Mean (sd) : 18.2 (13.1)      67 distinct values     28155      0        
+##      [integer]     min &lt; med &lt; max:                                    (100.0%)   (0.0%)   
+##                    -4 &lt; 16 &lt; 63                                                            
+##                    IQR (CV) : 19 (0.7)                                                     
+## 
+## 4    ethnicity     1. cauc                      25923 (92.1%)          28155      0        
+##      [factor]      2. afam                       2232 ( 7.9%)          (100.0%)   (0.0%)   
+## 
+## 5    smsa          1. no                         7223 (25.7%)          28155      0        
+##      [factor]      2. yes                       20932 (74.3%)          (100.0%)   (0.0%)   
+## 
+## 6    region        1. northeast                 6441 (22.9%)           28155      0        
+##      [factor]      2. midwest                   6863 (24.4%)           (100.0%)   (0.0%)   
+##                    3. south                     8760 (31.1%)                               
+##                    4. west                      6091 (21.6%)                               
+## 
+## 7    parttime      1. no                        25631 (91.0%)          28155      0        
+##      [factor]      2. yes                        2524 ( 9.0%)          (100.0%)   (0.0%)   
+## -------------------------------------------------------------------------------------------</code></pre>
+</div>
+<div id="model" class="section level2">
+<h2>Model</h2>
+<ul>
+<li>The regression model we are interested is
+<span class="math display">\[
+\log(wage) = \beta_1+ \beta_2experience+ \beta_3experience^2+ \\ \beta_4education+ \beta_5ethnicity + \epsilon
+\]</span></li>
+</ul>
+<hr />
+<pre class="r"><code>cps_lm &lt;- lm(log(wage) ~ experience + I(experience^2) + education + ethnicity, data = CPS1988)
+summary(cps_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(wage) ~ experience + I(experience^2) + education + 
+##     ethnicity, data = CPS1988)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.943 -0.316  0.058  0.376  4.383 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      4.321395   0.019174   225.4 &lt;0.0000000000000002 ***
+## experience       0.077473   0.000880    88.0 &lt;0.0000000000000002 ***
+## I(experience^2) -0.001316   0.000019   -69.3 &lt;0.0000000000000002 ***
+## education        0.085673   0.001272    67.3 &lt;0.0000000000000002 ***
+## ethnicityafam   -0.243364   0.012918   -18.8 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.584 on 28150 degrees of freedom
+## Multiple R-squared:  0.335,  Adjusted R-squared:  0.335 
+## F-statistic: 3.54e+03 on 4 and 28150 DF,  p-value: &lt;0.0000000000000002</code></pre>
+</div>
+<div id="changing-the-reference-category" class="section level2">
+<h2>Changing the reference category</h2>
+<pre class="r"><code>CPS1988$ethnicity &lt;- relevel(CPS1988$ethnicity, ref = &quot;afam&quot;)
+summary(lm(log(wage) ~ experience + I(experience^2) + education + ethnicity, data = CPS1988))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(wage) ~ experience + I(experience^2) + education + 
+##     ethnicity, data = CPS1988)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.943 -0.316  0.058  0.376  4.383 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      4.078031   0.021798   187.1 &lt;0.0000000000000002 ***
+## experience       0.077473   0.000880    88.0 &lt;0.0000000000000002 ***
+## I(experience^2) -0.001316   0.000019   -69.3 &lt;0.0000000000000002 ***
+## education        0.085673   0.001272    67.3 &lt;0.0000000000000002 ***
+## ethnicitycauc    0.243364   0.012918    18.8 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.584 on 28150 degrees of freedom
+## Multiple R-squared:  0.335,  Adjusted R-squared:  0.335 
+## F-statistic: 3.54e+03 on 4 and 28150 DF,  p-value: &lt;0.0000000000000002</code></pre>
+</div>
+<div id="comparison-of-models" class="section level2 smaller">
+<h2>Comparison of models</h2>
+<ul>
+<li>Is there any difference in the <span class="math inline">\(\log(wage)\)</span> (controlling for <span class="math inline">\(experience\)</span> and <span class="math inline">\(education\)</span>) between Caucasian and African-American men?</li>
+<li>We already have a model <code>cps_lm</code> with all the variables including <span class="math inline">\(ethnicity\)</span>.</li>
+<li>Now we need a model without <span class="math inline">\(ethnicity\)</span>.</li>
+</ul>
+<pre class="r"><code>noeth_lm &lt;- update(cps_lm, formula =  . ~ . - ethnicity)
+summary(noeth_lm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(wage) ~ experience + I(experience^2) + education, 
+##     data = CPS1988)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.933 -0.318  0.059  0.380  4.418 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      4.2780897  0.0191552   223.3 &lt;0.0000000000000002 ***
+## experience       0.0775203  0.0008856    87.5 &lt;0.0000000000000002 ***
+## I(experience^2) -0.0013160  0.0000191   -68.9 &lt;0.0000000000000002 ***
+## education        0.0874411  0.0012767    68.5 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.588 on 28151 degrees of freedom
+## Multiple R-squared:  0.326,  Adjusted R-squared:  0.326 
+## F-statistic: 4.55e+03 on 3 and 28151 DF,  p-value: &lt;0.0000000000000002</code></pre>
+</div>
+<div id="comparison-of-models-1" class="section level2">
+<h2>Comparison of models</h2>
+<pre class="r"><code>anova(cps_lm, noeth_lm )</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: log(wage) ~ experience + I(experience^2) + education + ethnicity
+## Model 2: log(wage) ~ experience + I(experience^2) + education
+##   Res.Df  RSS Df Sum of Sq   F              Pr(&gt;F)    
+## 1  28150 9599                                         
+## 2  28151 9720 -1      -121 355 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The effect of <span class="math inline">\(ethnicity\)</span> is significant at any reasonable level.</p>
+</div>
+<div id="interactions" class="section level2">
+<h2>Interactions</h2>
+<pre class="r"><code>cps_int &lt;- lm(log(wage) ~ experience + I(experience^2) +
+education * ethnicity, data = CPS1988)
+# or cps_int &lt;- lm(log(wage) ~ experience + I(experience^2) + education + ethnicity + education:ethnicity, data = CPS1988)
+summary(cps_int)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(wage) ~ experience + I(experience^2) + education * 
+##     ethnicity, data = CPS1988)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.945 -0.316  0.058  0.376  4.393 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)              4.313059   0.019590  220.17 &lt;0.0000000000000002 ***
+## experience               0.077520   0.000880   88.06 &lt;0.0000000000000002 ***
+## I(experience^2)         -0.001318   0.000019  -69.34 &lt;0.0000000000000002 ***
+## education                0.086312   0.001309   65.94 &lt;0.0000000000000002 ***
+## ethnicityafam           -0.123887   0.059026   -2.10               0.036 *  
+## education:ethnicityafam -0.009648   0.004651   -2.07               0.038 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.584 on 28149 degrees of freedom
+## Multiple R-squared:  0.335,  Adjusted R-squared:  0.335 
+## F-statistic: 2.83e+03 on 5 and 28149 DF,  p-value: &lt;0.0000000000000002</code></pre>
+</div>
+<div id="separate-regressions-for-each-levels" class="section level2">
+<h2>Separate regressions for each levels</h2>
+<pre class="r"><code>summary(
+  update(cps_lm, formula = . ~ . - ethnicity, subset = ethnicity == &quot;afam&quot;)
+)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(wage) ~ experience + I(experience^2) + education, 
+##     data = CPS1988, subset = ethnicity == &quot;afam&quot;)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.2982 -0.3520  0.0498  0.3992  2.3035 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      4.1593175  0.0739447    56.2 &lt;0.0000000000000002 ***
+## experience       0.0618958  0.0029656    20.9 &lt;0.0000000000000002 ***
+## I(experience^2) -0.0009415  0.0000612   -15.4 &lt;0.0000000000000002 ***
+## education        0.0865423  0.0051434    16.8 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.589 on 2228 degrees of freedom
+## Multiple R-squared:  0.257,  Adjusted R-squared:  0.256 
+## F-statistic:  256 on 3 and 2228 DF,  p-value: &lt;0.0000000000000002</code></pre>
+<hr />
+<pre class="r"><code>summary(
+  update(cps_lm, formula = . ~ . - ethnicity, subset = ethnicity == &quot;cauc&quot;)
+)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = log(wage) ~ experience + I(experience^2) + education, 
+##     data = CPS1988, subset = ethnicity == &quot;cauc&quot;)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -2.935 -0.314  0.058  0.374  4.442 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value            Pr(&gt;|t|)    
+## (Intercept)      4.310196   0.019759   218.1 &lt;0.0000000000000002 ***
+## experience       0.079234   0.000922    85.9 &lt;0.0000000000000002 ***
+## I(experience^2) -0.001360   0.000020   -68.0 &lt;0.0000000000000002 ***
+## education        0.085751   0.001312    65.3 &lt;0.0000000000000002 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.583 on 25919 degrees of freedom
+## Multiple R-squared:  0.332,  Adjusted R-squared:  0.332 
+## F-statistic: 4.3e+03 on 3 and 25919 DF,  p-value: &lt;0.0000000000000002</code></pre>
+</div>
+</div>
+<div id="diagnostic-tests" class="section level1">
+<h1>Diagnostic tests</h1>
+<hr />
+<ul>
+<li>The Breusch-Pagan test</li>
+</ul>
+<pre class="r"><code>jour_lm &lt;- lm(log(subs) ~ log(citeprice), data = journals)
+# library(lmtest)
+bptest(jour_lm)</code></pre>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  jour_lm
+## BP = 9.8, df = 1, p-value = 0.002</code></pre>
+<pre class="r"><code>bptest(cps_lm)</code></pre>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  cps_lm
+## BP = 616, df = 4, p-value &lt;0.0000000000000002</code></pre>
+<hr />
+<ul>
+<li>The Goldfeld-Quandt test</li>
+</ul>
+<pre class="r"><code># library(lmtest)
+gqtest(jour_lm, order.by = ~ citeprice, data = journals)</code></pre>
+<pre><code>## 
+##  Goldfeld-Quandt test
+## 
+## data:  jour_lm
+## GQ = 1.7, df1 = 88, df2 = 88, p-value = 0.007
+## alternative hypothesis: variance increases from segment 1 to 2</code></pre>
+<div id="testing-the-functional-form." class="section level2 smaller">
+<h2>Testing the functional form.</h2>
+<ul>
+<li>Ramsey’s RESET</li>
+<li>Misspecification of functional form (by omitting relevant variables).</li>
+<li>Let’s assess whether second and third powers of <span class="math inline">\(log(citeprice)\)</span> can significantly improve the model.</li>
+</ul>
+<pre class="r"><code># library(lmtest)
+reset(jour_lm)</code></pre>
+<pre><code>## 
+##  RESET test
+## 
+## data:  jour_lm
+## RESET = 1.4, df1 = 2, df2 = 176, p-value = 0.2</code></pre>
+<ul>
+<li>The result is clearly non-significant, and hence no
+misspecification can be detected in this direction.</li>
+</ul>
+</div>
+</div>
+<div id="multiple-models-in-stargazer-with-heteroskedasticity-robust-standard-errors." class="section level1">
+<h1>Multiple models in <code>stargazer</code> with heteroskedasticity-robust standard errors.</h1>
+<div id="data-2" class="section level2 smaller">
+<h2>Data</h2>
+<pre class="r"><code>library(AER)
+library(tidyverse)
+library(stargazer)
+
+data(CASchools, package = &quot;AER&quot;)
+caschool &lt;- CASchools
+
+caschool &lt;- mutate(caschool, str = students/teachers,
+         testscr = (math + read)/2)
+glimpse(caschool)</code></pre>
+<pre><code>## Rows: 420
+## Columns: 16
+## $ district    &lt;chr&gt; &quot;75119&quot;, &quot;61499&quot;, &quot;61549&quot;, &quot;61457&quot;, &quot;61523&quot;, &quot;62042&quot;, &quot;685~
+## $ school      &lt;chr&gt; &quot;Sunol Glen Unified&quot;, &quot;Manzanita Elementary&quot;, &quot;Thermalito ~
+## $ county      &lt;fct&gt; Alameda, Butte, Butte, Butte, Butte, Fresno, San Joaquin, ~
+## $ grades      &lt;fct&gt; KK-08, KK-08, KK-08, KK-08, KK-08, KK-08, KK-08, KK-08, KK~
+## $ students    &lt;dbl&gt; 195, 240, 1550, 243, 1335, 137, 195, 888, 379, 2247, 446, ~
+## $ teachers    &lt;dbl&gt; 10.90, 11.15, 82.90, 14.00, 71.50, 6.40, 10.00, 42.50, 19.~
+## $ calworks    &lt;dbl&gt; 0.5102, 15.4167, 55.0323, 36.4754, 33.1086, 12.3188, 12.90~
+## $ lunch       &lt;dbl&gt; 2.041, 47.917, 76.323, 77.049, 78.427, 86.956, 94.624, 100~
+## $ computer    &lt;dbl&gt; 67, 101, 169, 85, 171, 25, 28, 66, 35, 0, 86, 56, 25, 0, 3~
+## $ expenditure &lt;dbl&gt; 6385, 5099, 5502, 7102, 5236, 5580, 5253, 4566, 5356, 5036~
+## $ income      &lt;dbl&gt; 22.690, 9.824, 8.978, 8.978, 9.080, 10.415, 6.577, 8.174, ~
+## $ english     &lt;dbl&gt; 0.000, 4.583, 30.000, 0.000, 13.858, 12.409, 68.718, 46.95~
+## $ read        &lt;dbl&gt; 691.6, 660.5, 636.3, 651.9, 641.8, 605.7, 604.5, 605.5, 60~
+## $ math        &lt;dbl&gt; 690.0, 661.9, 650.9, 643.5, 639.9, 605.4, 609.0, 612.5, 61~
+## $ str         &lt;dbl&gt; 17.89, 21.52, 18.70, 17.36, 18.67, 21.41, 19.50, 20.89, 19~
+## $ testscr     &lt;dbl&gt; 690.8, 661.2, 643.6, 647.7, 640.9, 605.6, 606.8, 609.0, 61~</code></pre>
+</div>
+<div id="section-10" class="section level2 smaller">
+<h2></h2>
+<p>We shall consider the following models and graphically inspect the correlation and summarise all the regression results in a table.
+<span class="math display">\[
+\begin{align*}
+\text{(I)  }\text{testscr} &amp;= \beta_0 + \beta_1\text{str} + u\\
+\text{(II)  }\text{testscr} &amp;= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + u\\
+\text{(III)  }\text{testscr} &amp;= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + \beta_3\text{lunch} + u\\
+\text{(IV)  }\text{testscr} &amp;= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + \beta_3\text{calworks} + u\\
+\text{(V)  }\text{testscr} &amp;= \beta_0 + \beta_1\text{str} + \beta_2\text{english} + \beta_3\text{lunch} + \beta_4\text{calworks} + u\\
+\end{align*}
+\]</span></p>
+<p>where, <code>testscr</code>- test score
+<code>str</code> - student-teacher ratio
+<code>english</code> - percentage of english learners
+<code>lunch</code> - percentage of students that qualify for a free or subsidised lunch due to family incomes below a certain threshold.
+<code>calworks</code> - percentage of students qualifying for the <em>calworks</em> income assistance programme.</p>
+</div>
+<div id="section-11" class="section level2 smaller">
+<h2></h2>
+<pre class="r"><code>library(gridExtra)
+p1 &lt;- ggplot(caschool)+
+  geom_point(aes(str, testscr)) +
+  labs(title = &quot;Test Scores and\nStudent teacher ratio&quot;)
+p2 &lt;- ggplot(caschool)+
+  geom_point(aes(english, testscr)) +
+  labs(title = &quot;Test Scores and\nPercentage of english learners&quot;)
+p3 &lt;- ggplot(caschool)+
+  geom_point(aes(lunch, testscr)) +
+  labs(title = &quot;Test Scores and\nPercentage of students qualifying\nfor free lunch&quot;)
+p4 &lt;- ggplot(caschool)+
+  geom_point(aes(calworks, testscr))+
+  labs(title = &quot;Test Scores and\nPercentage of students qualifying \nfor income assistance programme&quot;)
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2, top = &quot;Fig:1&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+</div>
+<div id="section-12" class="section level2 smaller">
+<h2></h2>
+<ul>
+<li>Using colours</li>
+</ul>
+<pre class="r"><code>caschool %&gt;% 
+  ggplot(aes(str, testscr))+
+  geom_point(aes(colour = &#39;str&#39;), alpha = 1)+
+  geom_point(aes(x = english, colour = &#39;english&#39;), alpha = 0.8) +
+  geom_point(aes(x = lunch, colour = &#39;lunch&#39;), alpha = 0.6)+
+  geom_point(aes(x = calworks, colour = &#39;calworks&#39;), alpha = 0.4) +
+  labs(x = &quot;&quot;,
+       colour = &quot;Variables&quot;,
+       title = &quot;Correlation&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+</div>
+<div id="section-13" class="section level2 smaller">
+<h2></h2>
+<p>-Using plotting characters (shapes)</p>
+<pre class="r"><code>caschool %&gt;% 
+  ggplot(aes(str, testscr))+
+  geom_point(aes(shape = &#39;str&#39;), alpha = 0.5)+
+  geom_point(aes(x = english, shape = &#39;english&#39;), alpha = 0.5) +
+  geom_point(aes(x = lunch, shape = &#39;lunch&#39;), alpha = 0.5)+
+  geom_point(aes(x = calworks, shape = &#39;calworks&#39;), alpha = 0.5) +
+  labs(x = &quot;&quot;,
+       shape = &quot;Variables&quot;,
+       title = &quot;Correlation&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+</div>
+<div id="section-14" class="section level2 smaller">
+<h2></h2>
+<ul>
+<li>Non-linear model</li>
+</ul>
+<pre class="r"><code>ggplot(caschool, aes(x = lunch, y = testscr))+
+  geom_point()+
+  geom_smooth(aes(colour = &quot;linear&quot;),formula = y ~ x, method = &quot;lm&quot;, se =FALSE)+
+  geom_smooth(aes(colour = &quot;quadratic&quot;),formula = y ~ x + I(x^2), method = &quot;lm&quot;, se = FALSE)+
+  labs(colour = &quot;Models&quot;)</code></pre>
+<p><img src="/workshop_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+</div>
+<div id="heteroskedasticity-robust-standard-errors." class="section level2 smaller">
+<h2>Heteroskedasticity-robust standard errors.</h2>
+<p>Consistent estimation of <span class="math inline">\(\sigma_{\hat\beta_1}\)</span> under heteroskedasticity (<strong>Eicker–Huber–White standard errors</strong>):
+<span class="math display">\[
+SE(\hat\beta_1) = \sqrt{\frac{1}{n}.\frac{\frac{1}{n}\sum_{i=1}^{n}(X_i - \overline{X})^2\hat{u_i}^2}{\Big[ \frac{1}{n}\sum_{i=1}^{n}(X_i - \overline{X})^2\Big]^2}}
+\]</span></p>
+<p>Degrees of freedom correction and considered by MacKinnon &amp; White (1985), The difference is that we multiply by <span class="math inline">\(\frac{1}{n-2}\)</span> in the numerator of the previous equation.
+<span class="math display">\[
+SE(\hat\beta_1)_{HC1} = \sqrt{\frac{1}{n}.\frac{\frac{1}{n-2}\sum_{i=1}^{n}(X_i - \overline{X})^2\hat{u_i}^2}{\Big[ \frac{1}{n}\sum_{i=1}^{n}(X_i - \overline{X})^2\Big]^2}}
+\]</span></p>
+<hr />
+<ul>
+<li>variance-covariance heteroskedasticity-consistent matrix estimation using <code>vcovHC()</code> in the <code>sandwich</code> package.</li>
+</ul>
+<pre class="r"><code>lm_model1 &lt;- lm(testscr ~ str, data = caschool)
+vcovHC(lm_model1, type = &quot;HC1&quot;)</code></pre>
+<pre><code>##             (Intercept)     str
+## (Intercept)     107.420 -5.3639
+## str              -5.364  0.2699</code></pre>
+<pre class="r"><code>class(vcovHC(lm_model1, type = &quot;HC1&quot;))</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
+<hr />
+<ul>
+<li>We are interested in the square root of the diagonal elements of this matrix, i.e., the standard error estimates.</li>
+</ul>
+<pre class="r"><code>robust_se &lt;- sqrt(diag(vcovHC(lm_model1, type = &quot;HC1&quot;)
+))
+robust_se</code></pre>
+<pre><code>## (Intercept)         str 
+##     10.3644      0.5195</code></pre>
+</div>
+<div id="section-15" class="section level2 smaller">
+<h2></h2>
+<pre class="r"><code># models
+I &lt;- lm(testscr ~ str, data = caschool)
+II &lt;- lm(testscr ~ str + english, data = caschool)
+III &lt;- lm(testscr ~ str + english + lunch, data = caschool)
+IV &lt;- lm(testscr ~ str + english + calworks, data = caschool)
+V &lt;- lm(testscr ~ str + english + lunch + calworks, data = caschool)
+
+# gather all the robust standard error values in a list
+robust_se1 &lt;- list(
+  sqrt(diag(sandwich::vcovHC(I, type = &quot;HC1&quot;))),
+  sqrt(diag(sandwich::vcovHC(II, type = &quot;HC1&quot;))),
+  sqrt(diag(sandwich::vcovHC(III, type = &quot;HC1&quot;))),
+  sqrt(diag(sandwich::vcovHC(IV, type = &quot;HC1&quot;))),
+  sqrt(diag(sandwich::vcovHC(V, type = &quot;HC1&quot;)))
+)
+
+## use the `stargazer()` function to represent the output in a tabular form
+stargazer::stargazer(I, II, III, IV, V, type = &quot;text&quot;, 
+                     title = &quot;Analysis of caschool dataset.&quot;,
+                     se = robust_se1, digits = 3, 
+                     column.labels = c(&quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;),
+                     column.sep.width = &quot;1pt&quot;,
+                     notes = &quot;Heteroskedasticity robust standard errors are given in parentheses under coefficients.&quot;, 
+                     notes.append = TRUE) </code></pre>
+<pre><code>## 
+## Analysis of caschool dataset.
+## ===============================================================================================================================================
+##                                                                         Dependent variable:                                                    
+##                     ---------------------------------------------------------------------------------------------------------------------------
+##                                                                               testscr                                                          
+##                                I                       II                      III                       IV                       V            
+##                               (1)                     (2)                      (3)                      (4)                      (5)           
+## -----------------------------------------------------------------------------------------------------------------------------------------------
+## str                        -2.280***                -1.101**                -0.998***                -1.308***                -1.014***        
+##                             (0.519)                 (0.433)                  (0.270)                  (0.339)                  (0.269)         
+##                                                                                                                                                
+## english                                            -0.650***                -0.122***                -0.488***                -0.130***        
+##                                                     (0.031)                  (0.033)                  (0.030)                  (0.036)         
+##                                                                                                                                                
+## lunch                                                                       -0.547***                                         -0.529***        
+##                                                                              (0.024)                                           (0.038)         
+##                                                                                                                                                
+## calworks                                                                                             -0.790***                  -0.048         
+##                                                                                                       (0.068)                  (0.059)         
+##                                                                                                                                                
+## Constant                  698.900***               686.000***               700.100***               698.000***               700.400***       
+##                            (10.360)                 (8.728)                  (5.568)                  (6.920)                  (5.537)         
+##                                                                                                                                                
+## -----------------------------------------------------------------------------------------------------------------------------------------------
+## Observations                  420                     420                      420                      420                      420           
+## R2                           0.051                   0.426                    0.775                    0.629                    0.775          
+## Adjusted R2                  0.049                   0.424                    0.773                    0.626                    0.773          
+## Residual Std. Error    18.580 (df = 418)       14.460 (df = 417)         9.080 (df = 416)        11.650 (df = 416)         9.084 (df = 415)    
+## F Statistic         22.570*** (df = 1; 418) 155.000*** (df = 2; 417) 476.300*** (df = 3; 416) 234.600*** (df = 3; 416) 357.100*** (df = 4; 415)
+## ===============================================================================================================================================
+## Note:                                                                                                               *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01
+##                                                          Heteroskedasticity robust standard errors are given in parentheses under coefficients.</code></pre>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

@@ -27,10 +27,6 @@ options(scipen = 999, digits = 4)
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ```
 
-## Contents
-
-[Introduction to R and R Studio]()
-
 
 # Introduction | R and RStudio
 - https://github.com/uo-ec607/lectures
@@ -1032,10 +1028,20 @@ table3 %>%
 # read the layout
 (`layout19-20` <- read_csv("C:/Users/Pravesh/Documents/blogdown/rworkshop/working/workshop/layout19-20.csv", skip = 171, n_max = 104) %>% 
   select(`Full Name`, `Item /Col.`,`Field Length`, `Byte Position`, X7) %>% 
-   mutate(Name = paste(`Full Name`, `Item /Col.`, sep = '')) %>%  
+  mutate(Name = if_else(
+    duplicated(`Full Name`) == TRUE,
+    str_c(`Full Name`,'+' ,`Item /Col.`),
+    `Full Name`))  %>%  
   rename(Length = `Field Length`,
          Position1 = `Byte Position`,
-         Position2 = X7))
+         Position2 = X7)) 
+```
+
+```{r,, include=FALSE}
+#duplicated(`Full Name`) == TRUE, # check if there are any duplicated values in Full Name. If TRUE then combine it with another character.
+ #   str_c(`Full Name`,'+' ,`Item /Col.`),
+ #   `Full Name`)) 
+
 ```
 
 
